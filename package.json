@@ -52,7 +52,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "node serverUI.jss",
+    "start": "node server.js",
     "dev": "nodemon server.js"
   },
   "repository": {
