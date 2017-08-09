@@ -41,7 +41,9 @@ class Features extends React.Component {
 
                 <div className="ui hidden divider"></div>
                                 <Title titleText="BootCruit Features" />
+                <div className="ui hidden divider"></div>
                 <div className="ui four stackable cards">
+
 
                     {this.renderHelperFeatures(this.state.features)}
 

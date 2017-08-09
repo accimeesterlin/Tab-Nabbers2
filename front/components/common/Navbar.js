@@ -29,6 +29,7 @@ var Header = () =>
                     <li className="">
                         <a className="" href="contact">Contact</a>
                     </li>
+
                 </ul>
             </div>
 

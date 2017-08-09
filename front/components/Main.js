@@ -22,12 +22,12 @@ class Main extends Component {
     };
 
     handleClickFeatures = () => {
-        browserHistory.push('/About');
+        browserHistory.push('/Features');
         this.setState({ visible: false });
     };
 
     handleClickContact = () => {
-        browserHistory.push('/About');
+        browserHistory.push('/Contact');
         this.setState({ visible: false });
     };
 
