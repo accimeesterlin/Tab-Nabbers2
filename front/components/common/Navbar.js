@@ -24,10 +24,10 @@ var Header = () =>
                         <a className="" href="about">About</a>
                     </li>
                     <li className="">
-                        <a className="" href="about#features">Features</a>
+                        <a className="" href="features">Features</a>
                     </li>
                     <li className="">
-                        <a className="" href="about#contact">Contact</a>
+                        <a className="" href="contact">Contact</a>
                     </li>
                 </ul>
             </div>

@@ -33,9 +33,7 @@ const Routes = ({store}) => (
 );
 
 
-Routes.propTypes = {
-    store: PropTypes.object.isRequired
-}
+Routes.propTypes = {store: PropTypes.object.isRequired }
 
 export default Routes;
 

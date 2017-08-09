@@ -6,6 +6,8 @@ import Signin from "../components/Student";
 import Recruiter from "../components/Recruiter";
 import Profile from "../components/profile";
 import About from "../components/About";
+import Features from "../components/Features";
+import Contact from "../components/Contact";
 import D3Map from "../components/D3Map";
 import Event from "../components/Event";
 
@@ -15,7 +17,9 @@ const pages = {
         profile:Profile,
         map:D3Map,
         recruiter:Recruiter,
-        event:Event
+        event:Event,
+        features:Features,
+        contact:Contact
 };
 
 
