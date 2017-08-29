@@ -1,4 +1,4 @@
-const User = require("./models1/user"),
+const User = require("./models/user"),
     key = require("./config/key");
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,

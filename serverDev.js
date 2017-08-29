@@ -20,7 +20,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 
 // // Static directory
-app.use(express.static(path.join(__dirname + "/app/public")));
+app.use(express.static(path.join(__dirname + "/front/public")));
 
 app.get("*", function (req, res) {
 
