@@ -1,5 +1,5 @@
 import React from "react";
-import "../public/css/footer.scss";
+import "../../public/css/footer.scss";
 import {Footer, Col, Row, Button} from "react-materialize";
 
 const FooterPage = () => {

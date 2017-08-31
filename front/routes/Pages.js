@@ -8,14 +8,16 @@ import Profile from "../containers/_Profile";
 import About from "../containers/_About";
 import D3Map from "../containers/_D3Map";
 import Event from "../containers/_Event";
+import Signup from "../components/signup/signup";
 
 const pages = {
-        about:About,
-        student:Signin,
-        profile:Profile,
-        map:D3Map,
-        recruiter:Recruiter,
-        event:Event
+    About,
+    Signin,
+    Profile,
+    D3Map,
+    Recruiter,
+    Event,
+    Signup
 };
 
 

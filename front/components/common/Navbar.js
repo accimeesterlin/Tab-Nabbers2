@@ -3,7 +3,7 @@
  */
 import React from "react";
 
-import "../public/css/header.scss";
+import "../../public/css/header.scss";
 
 import {Navbar, Icon, NavItem} from "react-materialize";
 

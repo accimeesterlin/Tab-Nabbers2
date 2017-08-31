@@ -13,7 +13,7 @@ function mockSkills(randomRange) {
     };
     skillsArr.push(skills);
   }
-  console.log('Skills Array', skillsArr);
+  // console.log('Skills Array', skillsArr);
   return skillsArr;
 }
 

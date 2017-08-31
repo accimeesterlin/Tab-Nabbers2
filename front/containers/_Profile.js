@@ -1,64 +1,28 @@
-/**
- * Created by ea375w on 7/19/2017.
- */
+// This component is page related
+// We should not do any heavy HTML here
+// All of HTML Mocks up, needs to go to components folder
+// and be imported below into JSX
+// This component is mainly to get data from Redux Store
+// and pass it to the dumb components in the components folder
+// Every functions related to that page, need to be built in here
+// and pass via props as well to the presentation components in the components folders
+
+
 import React from "react";
 import "../public/css/profile.scss";
-import About from "../components/About";
-import Content from "../components/Content";
 import {connect} from "react-redux";
-
-
-
 
 class Profile extends React.Component {
 
     constructor(){
         super();
 
-        this.state = {
-            activeItem:'About'
-        };
-
     }
 
-    dataChanged = (data) => {
-        console.log(data);
-
-        this.setState({...data});
-        console.log({...data});
-
-        if(!data.activeItem){
-
-            fetch.userUpdate({...data, userID: localStorage.getItem("userID")})
-                .then(function(data) {
-                    console.log(data);
-                })
-                .catch(function(err){
-                    console.log(err);
-                });
-        }
-
-    };
-
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
     render() {
-
-        const [overview] = this.props.overview;
-
-        var obj = {
-            firstname:'Esterling',
-            lastname:'Accime'
-        };
-
-        console.log(overview);
-
+        // JSX goes below
         return (
             <section className="profile">
-
-                <About {...overview} dataChanged = {this.dataChanged} getIn = {this.getIn} />
-
-                <Content {...overview} dataChanged = {this.dataChanged} handleItemClick={this.handleItemClick}/>
 
             </section>
         );
@@ -66,8 +30,8 @@ class Profile extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        overview: state.overview
-    }
+    // here
+    // Getting data from Redux here
+    // and set pass it as props
 }
 export default connect(mapStateToProps)(Profile);

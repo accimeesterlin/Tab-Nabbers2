@@ -48,8 +48,8 @@ module.exports = (passport) => {
                 } else{
                     var newUser = new User();
 
-                    newUser.local.email = email;
-                    newUser.local.password = newUser.generateHash(password);
+                    newUser.loginData.local.email = email;
+                    newUser.loginData.local.password = newUser.generateHash(password);
                     //newUser.isNew = false;
 
                     console.log(newUser);
@@ -121,9 +121,9 @@ module.exports = (passport) => {
                         var newUser          = new User();
 
                         // set all of the relevant information
-                        newUser.google.id    = profile.id;
-                        newUser.google.token = token;
-                        newUser.google.name  = profile.displayName;
+                        newUser.loginData.google.id    = profile.id;
+                        newUser.loginData.google.token = token;
+                        newUser.loginData.google.name  = profile.displayName;
                         // newUser.google.email = profile.emails[0].value; // pull the first email
 
                         // save the user
@@ -175,10 +175,10 @@ module.exports = (passport) => {
                         var newUser                 = new User();
 
                         // set all of the user data that we need
-                        newUser.twitter.id          = profile.id;
-                        newUser.twitter.token       = token;
-                        newUser.twitter.username    = profile.username;
-                        newUser.twitter.displayName = profile.displayName;
+                        newUser.loginData.twitter.id          = profile.id;
+                        newUser.loginData.twitter.token       = token;
+                        newUser.loginData.twitter.username    = profile.username;
+                        newUser.loginData.twitter.displayName = profile.displayName;
 
                         // save our user into the database
                         newUser.save(function(err) {
@@ -224,9 +224,9 @@ module.exports = (passport) => {
                         var newUser            = new User();
 
                         // set all of the facebook information in our user model
-                        newUser.linkedin.id    = profile.id; // set the users facebook id
-                        newUser.linkedin.token = token; // we will save the token that facebook provides to the user
-                        newUser.linkedin.name  = profile.displayName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                        newUser.loginData.linkedin.id    = profile.id; // set the users facebook id
+                        newUser.loginData.linkedin.token = token; // we will save the token that facebook provides to the user
+                        newUser.loginData.linkedin.name  = profile.displayName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
                         // newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
                         // save our user to the database

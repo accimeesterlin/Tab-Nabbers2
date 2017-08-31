@@ -5,9 +5,9 @@ import React from "react";
 
 import { Button, Checkbox, Form } from "semantic-ui-react";
 
-import css from "../public/css/login.scss";
+import css from "../../public/css/login.scss";
 
-import fetch from "../utils/api";
+import fetch from "../../utils/api";
 
 import axios from "axios";
 

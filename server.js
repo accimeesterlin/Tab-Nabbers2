@@ -44,7 +44,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 
 // // Static directory
-app.use(express.static(path.join(__dirname + "/app/public")));
+app.use(express.static(path.join(__dirname + "/front/public")));
 
 //For BodyParser
 app.use(bodyParser({ defer: true }));
@@ -95,10 +95,12 @@ runServer()
         .count()
         .then( (count) => {
           console.log(`The count is ${count}`);
-          if (count < 5)
-            console.log('Writing dummy data to the db');
-            return User
-              .create(generateUsers(5))
+          if (count < 5){
+              console.log('Writing dummy data to the db');
+              return User
+                  .create(generateUsers(5))
+          }
+
         })
         .catch(err => console.log(err))
       console.log(generateUsers(5));

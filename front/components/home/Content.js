@@ -2,8 +2,6 @@
  * Created by esterlingaccime on 8/12/17.
  */
 import React from "react";
-import { Grid, Menu, Segment, Dropdown, Rating } from 'semantic-ui-react';
-
 import InlineEdit from "react-edit-inline";
 
 const Content = ({firstname, lastname, job, street, dataChanged, activeItem, handleItemClick}) =>{
