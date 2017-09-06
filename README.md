@@ -32,21 +32,21 @@
                     └──Sidebaritem.js
                 └── BCSidebar.js
                 └── signup.js
-         └── About.js
+         └── _About.js
          └── Content.js
          └── Footer.js
          └── Navbar.js
          └── signin.js
          └── signup.js
-         └── Student.js
+         └── _Student.js
    |-- containers/
         └── Home.js
-        └── D3Map.js
-        └── Event.js
+        └── _D3Map.js
+        └── _Event.js
         └── Home.js
-        └── Profile.js
-        └── Recruiter.js
-        └── StudentCredentials.js
+        └── _Profile.js
+        └── _Recruiter.js
+        └── _Student.js
    |-- public/
         └── css
             └── about.scss
@@ -76,7 +76,7 @@
               └── Page.js
               └── routes.js           
    |-- test/
-        └──api.test.js
+        └──social_button_login.test.js
    |-- utils
         └── api.js
         └── newApi.js
@@ -125,6 +125,8 @@ Before you proceed, make sure you fork the repo
 
 > Note: If the below process doesn't work for you, no worries. Create an issue
 
+
+### Front End Steps:
 ##### Step 1
 > npm install
 ```
@@ -144,6 +146,51 @@ clicking on this link [localhost](http://localhost:3000) or type http://localhos
 
 
 You should see a new browser tabs open, and there you go, you are all set!!
+
+
+
+Note:
+For those of you working in the Back End
+
+### Back End Steps:
+Follow these steps
+
+#### Step 1
+> npm install
+
+#### Step 2
+in back/config , create a file named key.js and add the 
+following into it
+
+```
+module.exports = {
+    gooogle:{
+        client_Id: '',
+        client_secret:""
+    },
+    twitter:{
+        consurmer_key:'',
+        consumer_secret:''
+    },
+
+    linkedin:{
+        client_id:'',
+        client_secret:''
+    },
+    facebook:{
+        client_id:'',
+        client_secret:''
+    }
+};
+```
+
+
+#### Step 3
+
+> npm start
+
+You should see a new browser tabs open, and there you go, you are all set!!
+
 
 
 ### Technologies

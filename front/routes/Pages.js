@@ -2,23 +2,26 @@
  * Created by ea375w on 7/19/2017.
  */
 
-import Signin from "../containers/StudentCredentials";
-import Recruiter from "../containers/Recruiter";
-import Profile from "../containers/Profile";
-import About from "../containers/About";
-import D3Map from "../containers/D3Map";
-import Event from "../containers/Event";
-
-import Home from "../containers/Home";
+import Signin from "../containers/_Student";
+import Recruiter from "../containers/_Recruiter";
+import Profile from "../containers/_Profile";
+import About from "../containers/_About";
+import D3Map from "../containers/_D3Map";
+import Event from "../containers/_Event";
+import Student from "../containers/_Student";
+import Login from "../containers/_Login";
+import {Signup} from "../components/signup/index";
 
 const pages = {
-        about:About,
-        student:Signin,
-        profile:Profile,
-        map:D3Map,
-        recruiter:Recruiter,
-        event:Event,
-        home:Home
+    About,
+    Signin,
+    Student,
+    Login,
+    Recruiter,
+    Profile,
+    D3Map,
+    Event,
+    Signup
 };
 
 

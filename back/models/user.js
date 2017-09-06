@@ -1,207 +1,206 @@
-module.exports = function(sequelize, Sequelize) {
+/**
+ * Created by esterlingaccime on 8/14/17.
+ * Edited by Juliafin and Reynnan on 8/26/17
+ */
 
-    var User = sequelize.define('user', {
+const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
 
-            firstname: {
-                type: Sequelize.STRING,
-                allowNull: false,
-                validate: {
-                    notEmpty: true
-                },
-                defaultValue: "Enter your first name"
-            },
-
-            lastname: {
-                type: Sequelize.STRING,
-                allowNull: false,
-                validate: {
-                    notEmpty: true
-                },
-                defaultValue: "Enter your lastname"
-            },
-
-            email: {
-                type: Sequelize.STRING,
-                allowNull: false,
-
-                unique: true,
-                validate: {
-                    isEmail: true
-                }
-            },
-
-            password: {
-                type: Sequelize.STRING,
-                allowNull: false
-            },
+const emailValid = [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email.'];
+const phonenumberValid = [/(?=^\d{10}$)|(?=^\d{3}-\d{3}-\d{4}$)|(?=^\(\d{3}\)\d{3}-\d{4}$)/, 'Please enter a valid phone number in the format 1234567890, 123-456-7890, or (123)456-7890'];
+const zipcodeValid = [/^\d{5}(?:[-\s]\d{4})?$/, 'The zipcode must either be in the format XXXXX or XXXXX-XXXX.'];
 
 
-            phoneNumber: {
-                type: Sequelize.STRING,
-                allowNull: true,
-                validate: {
-                    notEmpty: true,
-                    len: [10]
-                },
-                defaultValue: "Enter your phone number"
-            },
+const addressSchema = new mongoose.Schema({
+  street_address: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  apartment_number: mongoose.Schema.Types.Mixed,
+  city: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  state: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 2
+  },
+  zipcode: {
+    type: String,
+    required: true,
+    match: zipcodeValid
+  },
+  _id: false
+});
 
-            photo: {
-                type: Sequelize.STRING
-            },
+const skillSchema = new mongoose.Schema({
+  
+  skillName: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    match: [/^Library|Framework|Language$/],
+    required: true
+  },
+  active: {
+    type: Boolean,
+    required: true
+  }
+  
 
-            photoUrl: {
-                type: Sequelize.STRING
-            },
-
-            github: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your github link"
-            },
-
-
-            street: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your street"
-            },
-
-            job: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your job status"
-            },
-
-            address: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your address"
-            },
-
-            gender: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your gender"
-            },
-
-            homeaddress: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your homeaddress"
-            },
-
-            birthday: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your birthday"
-            },
-
-            site: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your site"
-            },
+});
 
 
-            title: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your title"
-            },
+const userSchema = new mongoose.Schema({
 
-            addr: {
-                type: Sequelize.STRING,
-                defaultValue: "Enter your city and state"
-            },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1,
+    default: "Enter your first name"
+  },
 
-            //Skills
-            HTML: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 1,
+    default: "Enter your last name"
+  },
 
-            },
+  gender: {
+    type: String,
+    default: "Enter your gender",
+    match: [/M|F/]
+  },
 
-            CSS: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  phoneNumber: {
+    type: String,
+    required: true,
+    match: phonenumberValid,
+    trim: true,
+    default: "Enter your phone number"
+  },
 
-            JavaScript: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  address: {
+    type:addressSchema,
+    required: true
+  },
 
-            Nodejs: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  birthday: {
+    
+    month: {
+      type: String
+    },
 
-            mySQL: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+    day: {
+      type: String
+    },
 
-            Express: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+    year: {
+      type: String
+    }
 
-            Handlebars: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  },
 
-            Bootstrap: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  photo: {
+    type: String
+  },
 
-            Python: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  photoUrl: {
+    type: String
+  },
 
-            Angular: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  profiles: {
+    
+    github: {
+      type: String,
+      default: "Enter a link to your github profile"
+    },
+
+    linkedIn: {
+      type: String,
+      default: "Enter a link to your linkedIn profile"
+    },
+
+    website: {
+      type: String,
+      default: "Enter a link to your website"
+    }
+  },
 
 
-            Ruby: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  skills: {
+    type: [skillSchema],
+    
+  },
+  
+  jobStatus: {
+    type: String,
+    default: "Enter your job status"
+  },
 
-            Flask: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  jobTitle: {
+    type: String,
+    default: "Enter your job title"
+  },
 
-            Java: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            },
+  loginData: {
+    local: {
+      email: {
+        type: String,
+        unique: true,
+        match: emailValid,
+        minlength: 1
+      },
+      password: String
+    },
+    facebook: {
+      id: {type: String},
+      token: {type: String},
+      email: {type: String},
+      name: {type:String}
+    },
+    twitter: {
+      id: {type:String},
+      token: {type:String},
+      displayName: {type:String},
+      username: {type:String}
+    },
+    google: {
+      id: {type:String},
+      token: {type:String},
+      email: {type:String},
+      name: {type:String}
+    },
 
-            Cplusplus: {
-                type: Sequelize.BOOLEAN,
-                defaultValue: false
-            }
+    linkedin: {
+      id: {type:String},
+      token: {type: String},
+      email: {type: String},
+      name: {type:String}
+    }
+  }
 
-        },
+});
 
-        //Associations
-        {
-            classMethods: {
-                associate: function(models) {
-                    User.belongsTo(models.cohort, {
-                        foreignKey: {
-                            allowNull: false
-                        },
-                        onDelete: "CASCADE"
-                    });
-
-                    User.belongsTo(models.bootcamp, {
-                        foreignKey: {
-                            allowNull: false
-                        },
-                        onDelete: "CASCADE"
-                    });
-                }
-            }
-        });
-
-    return User;
-
+userSchema.methods.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
+
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.local.password);
+};
+
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

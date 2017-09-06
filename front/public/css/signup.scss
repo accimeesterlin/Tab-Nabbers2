@@ -1,95 +1,234 @@
-////html, body {
-////  height: 100%;
-////}
-////
-////.input {
-////    margin-bottom: 2em;
-////}
-////
-////.form-holder {
-////    background: rgba(255,255,255,0.2);
-////    border-radius: 3px;
-////  }
-////
-////  .form-head {
-////    font-size: 30px;
-////    letter-spacing: 2px;
-////    text-transform: uppercase;
-////    margin: 15px auto 30px auto;
-////  }
-////
-////  .remember-me {
-////    text-align: left;
-////  }
-//
-//
-//.container{
-//
-//
-//  &__social{
-//    border:1px solid red;
-//    padding:20px;
-//    display: flex;
-//    justify-content:center;
-//    align-items: center;
-//    flex-direction: column;
-//
-//    a{
-//      margin:12px;
-//
-//
-//      button{
-//        width:200px;
-//      }
-//    }
-//  }
-//}
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+body{
+	width:100%;
+	height:100%;
+	background-color: white;
+}
+
+.mainContainer{
+// background: grey;
+	/*height: 700px;
+	margin-top: 20px;
+	width: 820px;*/
+
+	background:#fff;
+	position:fixed;
+	background-size:cover;
+	height: 95%;
+	width: 98%;
+	margin-bottom: 5%;
+	margin-right: 20%;
+	border: 1px 1px 1px red;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.leftHeading{
+	margin: 15px;
+	padding: 25px;
+	font-weight: 500;
+	font-size: 300%;
+	position: relative;
+	right: 40%;
+	color: rgba(120,210,200,1);
+	right:33%;
+}
+
+.input{
+	display: block;
+	margin: 5%;
+	position: relative;
+	right: 5%;
+	border: none;
+	background: transparent;
+	color: rgba(111,191,194,1);
+}
+
+.correct{
+	display: none;
+}
+
+.mistake{
+	position: relative;
+	left: 4%;
+	color: red;
+	font-weight: 200;
+}
+
+.sideContainer{
+	position: relative;
+	left: 7.5%;
+	top: 2%;
+	width: 36%;
+	float: left;
+	height: 99%;
+	text-align: center;
+	font-size: 110%;
+}
+
+.shadowBox{
+	margin-top: 1%;
+	margin-left: 1%;
+	// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #707070;
+		opacity: 0.6;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #707070;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #707070;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #707070;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #707070;
+}
+
+input:focus{
+	outline: none;
+}
+
+.button{
+	background-color: rgba(115,233,190,1);
+	font-weight: bold;
+	width: 40%;
+	height: 8%;
+	margin-top: 5%;
+	position: relative;
+	right: 30%;
+	border: none;
+	border-radius: 2px;
+	color: white;
+}
+
+.rightContainer .button{
+	left: 25%;
+	margin-top: 5%;
+	width: 60%;
+	left: 23%;
+}
+
+.button:hover{
+	background-color: #1e8e79;
+	cursor: pointer;
+	transition: all 0.7s;
+	box-shadow: 0 4px 8px 0 rgba(255,255,255, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
+
+}
+
+.rightContainer{
+	width: 49%;
+	height: 95%;
+	position: absolute;
+	left: 50%;
+	float: right;
+	background-image: url('/../img/login_image.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	position:fixed;
+
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.rightHeading{
+	margin: 1%;
+	padding: 5%;
+	font-weight: 500;
+	position: relative;
+	font-size: 260%;
+	color: white;
+	text-align: center;
+}
+
+h1{
+	top: 4%;
+}
+
+.facebook,.twitter,.google{
+	color: white;
+	font-weight: 500;
+}
+
+.facebook{
+	background: #3b5998;
+}
+
+.twitter{
+	background: #00aced;
+}
+
+.google{
+	background: #d34836;
+}
+
+.google:hover,.facebook:hover,.twitter:hover{
+
+	cursor: pointer;
+}
+.google:hover{
+	background-color: #af1f0f;
+}
+
+.facebook:hover{
+	background-color: #0c3892;
+}
+
+.twitter:hover{
+	background-color: #0d8aea;
+}
+
+button.circle{
+	height: 70px;
+	width: 70px;
+	background-color: lightgrey;
+	border-radius: 50%;
+	border: none;
+	position: relative;
+	left: 11.5%;
+	top: 45%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.circle h3{
+	font-weight: 300;
+}
+
+@media screen and (min-width: 375px) {
+    button.circle {
+        left: 6%;
+    }
+}
+@media screen and (min-width: 480px) {
+    button.circle {
+        left: 10%;
+    }
+}
+
+@media screen and (min-width: 514px) {
+    button.circle {
+        left: 7.5%;
+    }
+}
+
+@media screen and (min-width: 709px) {
+    button.circle {
+        left: 9%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    button.circle {
+        left: 10%;
+    }
+}
+
+@media screen and (min-width: 1080px) {
+    button.circle {
+        left: 11%;
+    }
+}

@@ -4,7 +4,6 @@ const path = require("path");
 
 
 module.exports = {
-
     // This is the entry point or start of our react applicaton
     entry:[
         "eventsource-polyfill",
@@ -42,8 +41,8 @@ module.exports = {
 
             {
                 test: /\.scss$/,
-               // loaders:'style-loader!css-loader!sass-loader'
-                loader:['style-loader', 'css-loader', 'sass-loader']
+               loaders:'style-loader!css-loader!sass-loader'
+                // loader:['style-loader', 'css-loader', 'sass-loader']
 
             }
         ]
