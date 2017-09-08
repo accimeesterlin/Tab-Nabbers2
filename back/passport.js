@@ -91,11 +91,6 @@ module.exports = (passport) => {
         });
     }));
 
-
-
-
-
-
     passport.use(new GoogleStrategy({
             clientID: key.gooogle.client_Id,
             clientSecret: key.gooogle.client_secret,
@@ -139,14 +134,6 @@ module.exports = (passport) => {
 
             console.log(profile);
         }));
-
-
-
-
-
-
-
-
 
     passport.use(new TwitterStrategy({
             consumerKey: key.twitter.consurmer_key,
@@ -193,10 +180,6 @@ module.exports = (passport) => {
 
         }
     ));
-
-
-
-
 
     passport.use(new LinkedInStrategy({
             consumerKey: key.linkedin.client_id,
@@ -245,13 +228,6 @@ module.exports = (passport) => {
             console.log(profile, tokenSecret, token);
         }
     ));
-
-
-
-
-
-
-
 
     passport.use(new FacebookStrategy({
             clientID: key.facebook.client_id,

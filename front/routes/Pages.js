@@ -10,15 +10,18 @@ import D3Map from "../containers/_D3Map";
 import Event from "../containers/_Event";
 import Signup from "../components/signup/signup";
 
-const pages = {
+const Pages = {
     About,
     Signin,
-    Profile,
     D3Map,
     Recruiter,
     Event,
     Signup
 };
 
+const ProfilePage = {
+  Profile
+}
 
-export default pages;
+
+export { Pages, ProfilePage };

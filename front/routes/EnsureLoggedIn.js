@@ -1,13 +1,14 @@
 /**
  * Created by esterlingaccime on 8/28/17.
  */
+
 import React from "react";
 import {browserHistory} from "react-router";
 import {connect} from "react-redux";
 
 class EnsureLoggedInContainer extends React.Component{
 
-    componentDidMount(){
+    componentDidMount() {
         const {dispatch, currentURL } = this.props;
 
         if(!isLoggedin){
@@ -39,9 +40,9 @@ function mapStateToProps (state, ownProps){
 
 }
 
-
 const loggedIn = () => {
     // securing routes
+    return true;
 };
 
 

@@ -1,6 +1,4 @@
-
 const path = require("path");
-
 
 module.exports = function (app, passport) {
 
@@ -9,12 +7,10 @@ module.exports = function (app, passport) {
         failureRedirect:'/'
     }));
 
-
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/profile', // redirect to the secure profile section
         failureRedirect : '/' // redirect back to the signup page if there is an error
     }));
-
 
 
 
@@ -24,7 +20,6 @@ module.exports = function (app, passport) {
         successRedirect: '/profile',
         failureRedirect: '/'
     }));
-
 
 
 
@@ -39,6 +34,7 @@ module.exports = function (app, passport) {
         });
 
 
+
     app.get('/auth/google',
         passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -48,10 +44,10 @@ module.exports = function (app, passport) {
 
     app.get('/auth/twitter', passport.authenticate('twitter'));
 
-
     app.get('/auth/twitter/callback',
         passport.authenticate('twitter', { successRedirect: '/profile',
             failureRedirect: '/' }));
+
 
 
     function isLoggedIn(req, res, next) {
@@ -62,7 +58,4 @@ module.exports = function (app, passport) {
         }
     }
 
-
 };
-
-
