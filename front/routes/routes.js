@@ -19,7 +19,7 @@ const Routes = ({store}) => (
             <Route path="/" component={Home}>
                 <IndexRoute component={Video} />
                 {Object.keys(Pages).map((routing, i) => (<Route path={routing.toLowerCase()} component={Pages[routing]} key={i} />))}
-                <Route path="profile" component= {ProfilePage} onEnter= {ELIC.requireAuth} />
+                <Route path="profile" component= {ProfilePage} onEnter= {ELIC.requireAuth()} />
             </Route>
         </Router>
     </Provider>
