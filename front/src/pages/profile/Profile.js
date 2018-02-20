@@ -16,7 +16,7 @@ import {
 
 
 const Integrations = () => (
-    <section className="integrations flex around wrap">
+    <section className="integrations jumbotron">
         <div >
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veritatis,
                 sed in. Incidunt quae quod deserunt tempore accusantium sapiente doloribus,
@@ -55,7 +55,7 @@ const Integrations = () => (
 );
 
 const Settings = () => (
-    <div className="settings flex around wrap">
+    <div className="settings ">
         <Input name="Username" />
         <Input name="Username" />
         <Input name="Username" />
@@ -65,7 +65,7 @@ const Settings = () => (
 
 
 const Info = () => (
-    <div className="main_info flex main-center around wrap ">
+    <div className="main_info jumbotron myjumbotron ">
         <Input name="Username" />
         <Input name="Name" sub_text = "(Firstname and Lastname)"/>
         <Input name="Interest" sub_text = "(Interested events)"/>
@@ -73,12 +73,14 @@ const Info = () => (
         <Input name="City" />
         <Input name="Zipcode" />
         <Input name="State" />
-
+        <div className="submit-info">
+            <button className="btn btn-primary"> Submit </button>
+        </div>
     </div>
 );
 
 const Credentials = () => (
-    <div className="credentials flex main-center column wrap ">
+    <div className="credentials  ">
         <div>
             <h3>Warning</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum maxime iusto
@@ -111,8 +113,8 @@ class Profile extends Component {
     change_view = (view) => this.setState({ view, current: { [view]: "current" } });
     render() {
         return (
-            <div>
-                <Header />
+            <div className="">
+              
                 <Content {...this.state} change_view={this.change_view} />
                 <Footer />
             </div>

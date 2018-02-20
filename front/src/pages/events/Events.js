@@ -15,17 +15,21 @@ import data from "./data.json";
 // }
 
 
+
 const Search = (props) => (
-    <div>
-        <div className="search flex center ">
-            <form className="flex main-center  column">
+        <div className="row">
+            <div className="col-md-4">
+                <div className="thumbnail">
+           
                 <Input  placeholder="Search events..." />
                 <button className="btn">Search</button>
-            </form>
-        </div>
+           
+                </div>
 
         {true ? <DisplayEvents {...props}/> : ""}
-    </div>
+            </div>
+        </div>
+
 );
 
 
@@ -111,7 +115,7 @@ const switch_component = {
 const Content = (props) => {
     const { view } = props;
     return (
-        <div className="content search_events flex between">
+        <div className="content search_events ">
             <Sidebar {...props} />
             {switch_component[view](props)}
         </div>

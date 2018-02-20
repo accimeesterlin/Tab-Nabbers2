@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 // import { connect } from 'react-redux';
+import Header from './components/header/Header'
+
+
 import {
   Events,
   Profile,
@@ -19,6 +22,7 @@ import "./App.css";
 
 const Routes = (props) => (
   <div className="main">
+  <Header/>
     <Route exact path="/" component={Signin} />
     <Route exact path="/join" component={Join} />
     <Route exact path="/dashboard" component={Dashboard} />

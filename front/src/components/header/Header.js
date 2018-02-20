@@ -6,9 +6,9 @@ import {
 import "./header.css";
 
 const Header = () => (
-    <header className="header flex between">
+    <header className="navbar navbar-default  myheader ">
         <Link to = "/"><h1>Bootcruit </h1></Link>
-        <ul className="flex around">
+        <ul className="nav-pils nav-links">
             <li><NavLink to="/dashboard" >Dashboard</NavLink></li>
             <li><NavLink to="/events">Events</NavLink></li>
             <li><NavLink to="/profile">Profile</NavLink></li>
