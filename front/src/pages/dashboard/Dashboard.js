@@ -31,7 +31,7 @@ class Dashboard extends Component {
             <div>
                 <Header />
                 <Content {...this.state} filter_num={filter_num} />
-                <Footer />
+                <Footer className="footer" />
             </div>
         );
     }
@@ -63,7 +63,7 @@ const Events = (props) => {
     } = props;
 
     return (
-        <div className="events flex column wrap">
+        <div className="events flex column wrap myjumbotron jumbotron">
             <div>
                 <h3>Events: </h3>
                 <p>
@@ -93,8 +93,8 @@ const Events = (props) => {
  * Layout 2 blocks
  */
 const Tips = () => (
-    <div className="tips flex around column">
-        <div>
+    <div className="tips flex around column myjumbotron jumbotron">
+        <div className="">
             <h3>Recommendations: </h3>
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
@@ -117,8 +117,8 @@ const Tips = () => (
  * Layout 3 blocks
  */
 const Recommendations = () => (
-    <div className="resources flex between  column">
-        <div>
+    <div className="resources flex  myjumbotron jumbotron ">
+        <div className="column main-events ">
             <h3>Tips: </h3>
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
