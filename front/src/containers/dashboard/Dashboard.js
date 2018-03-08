@@ -6,6 +6,9 @@ import {
     Footer
 } from "../../components";
 
+import hackathon from "../../images/hackathon-alex-kotliarskyi.jpg";
+import portfolio from "../../images/portfolio-water-journal.jpg";
+
 import {
     connect
 } from "react-redux";
@@ -134,9 +137,15 @@ const Tips = () => (
             </p>
         </div>
         <div className="top_tip center flex  wrap">
-            <div><p>Portfolio</p></div>
-            <div><p>Connect with recruiters on Linkedin</p></div>
-            <div><p>Start looking</p></div>
+            <div>
+                <p>Portfolio</p>
+            </div>
+            <div>
+                <p>Connect with folks</p>
+            </div>
+            <div>
+                <p>Start looking</p>
+            </div>
         </div>
     </div>
 );
@@ -150,7 +159,7 @@ const Tips = () => (
 const Recommendations = () => (
     <div className="resources flex between  column">
         <div>
-            <h3>Tips: </h3>
+            <h3>Tips and hackathons: </h3>
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
                 odit accusantium incidunt minus, eaque et tempora vitae expedita cupiditate
@@ -158,8 +167,12 @@ const Recommendations = () => (
             </p>
         </div>
         <div className="interview_tip center flex  wrap">
-            <div><p>Tips about Interviews</p></div>
-            <div><p>Hackerthons</p></div>
+            <div>
+                <p>Tips about Interviews</p>
+            </div>
+            <div>
+                <p>Participate in Hackathons</p>
+            </div>
         </div>
     </div>
 );

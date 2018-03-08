@@ -32,12 +32,34 @@
     } // Resources layout of the page
     .resources {
         .interview_tip {
+
+            p{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                background: rgba(3, 0, 0, 0.45);
+                padding: 10px;
+                color: #fff;
+                font-size: 16px;
+                letter-spacing: 5px;
+            }
+
+            div{
+                position: relative;
+            }
+            
             & div:first-child {
                 width: 50%;
                 height: 250px;
                 background: #fff;
                 margin: 20px;
                 border: 1px solid #efe8ed;
+                background-image: url("../../images/tips-helloquence.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 100%;;
+                
             }
             & div:last-child {
                 width: 40%;
@@ -45,18 +67,54 @@
                 height: 250px;
                 background: #fff;
                 margin: 20px;
+                background-image: url("../../images/hackathon-alex-kotliarskyi.jpg");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 100%;;
             }
         }
     } // Tips about interview section
     .tips {
         .top_tip {
+
+            p{
+                position: absolute;
+                bottom:0;
+                text-align: center;
+                background: rgba(3, 0, 0, 0.45);
+                padding: 10px;
+                color: #fff;
+                font-size: 16px;
+                letter-spacing: 5px;
+                width: 100%;
+            }
+
             div {
+                position: relative;
                 width: 25%;
                 height: 250px;
                 border: 1px solid #efe8ed;
                 background: #fff;
                 margin: 20px;
+                background-size: cover;
+                background-position: 100%;
+                background-image: url("../../images/connections.benjamin-zanatta.jpg");
+                background-repeat: no-repeat;
             }
+
+            &>div:first-child{
+                background-size: cover;
+                background-image: url("../../images/portfolio-water-journal.jpg");
+            }
+
+            &>div:last-child{
+                background-size: cover;
+                background-image: url("../../images/john-schnobrich-520023.jpg");
+            }
+
+            
+
+            
         }
     }
 }

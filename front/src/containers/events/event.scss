@@ -14,12 +14,14 @@
             }
         }
     }
+
+
+    
     &>div:last-child {
         width: 85%;
         border-left: 1px solid #efe8ed;
         background: #f1f3f5;
         margin-left: 15%;
-        height: 100vh;
         .search {
             form {
                 width: 100%;
@@ -29,6 +31,21 @@
                 }
             }
         }
+    }
+
+
+    &>#notFound{
+        background: #fff;
+        height: 100vh;
+
+        h2{
+            margin-top: 2em;
+        }
+        
+    }
+
+    .loading{
+        background: #f1f3f5;
     }
     .week {
         border: 1px solid #efe8ed;
