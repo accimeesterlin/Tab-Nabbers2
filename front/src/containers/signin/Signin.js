@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import qs from "stringquery";
 import "./signin.css";
 import {
     login,
@@ -49,6 +50,14 @@ export class Signin extends Component {
     }
 
     render() {
+
+        console.log("Singin: ", );
+
+        const params = qs(this.props.location.search);
+
+        console.log("Params: ", params);
+        
+        
 
         return (
             <div className="login landing flex center ">
