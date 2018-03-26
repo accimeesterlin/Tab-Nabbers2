@@ -10,7 +10,6 @@ const signin = (state = initialState, action) => {
         case "SIGNIN_IN_FULFILLED":
             return {
                 ...state,
-                authenticated: true,
                 pending: false,
                 error: undefined
             };
@@ -26,19 +25,7 @@ const signin = (state = initialState, action) => {
                 error: undefined,
                 pending: true
             };
-
-        case "LOGOUT":
-            return {
-                ...state,
-                authenticated: false
-            };    
-
-        case "GET_VALUES_SIGNIN":
-            return {
-                ...state,
-                ...action.data,
-                error: undefined
-            };    
+         
         default:
             return state;
     }

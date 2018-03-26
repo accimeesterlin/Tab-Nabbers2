@@ -11,7 +11,6 @@ const signup = (state = initialState, action) => {
         case "SIGN_UP_FULFILLED":
             return {
                 ...state,
-                authenticated: true,
                 pending: false
             };
         case "SIGN_UP_REJECTED":
@@ -25,18 +24,6 @@ const signup = (state = initialState, action) => {
             return {
                 ...state,
                 pending: true
-            };
-
-        case "GET_VALUES_SIGNUP":
-            return {
-                ...state,
-                ...action.data
-            };
-            
-        case "LOGOUT":
-            return {
-                ...state,
-                authenticated: false
             };
 
         default:

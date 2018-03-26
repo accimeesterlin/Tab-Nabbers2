@@ -1,7 +1,7 @@
 const initial_state = {
     authenticated: false,
     pending: false,
-    search:""
+    search: ""
 };
 
 
@@ -15,14 +15,19 @@ const user = (state = initial_state, action) => {
             };
 
         case "GET_VALUE":
+        case "GET_VALUES_SIGNUP":
+        case "GET_VALUES_SIGNIN":
             return {
                 ...state,
-                ...action.data,
-                error: {
-                    ...state.error,
-                    login: "",
-                    signup: ""
-                }
+                ...action.data
+            };
+
+
+        case "SIGNIN_IN_FULFILLED":
+        case "SIGN_UP_FULFILLED":
+            return {
+                ...state,
+                authenticated: true
             };
 
         case "GET_LOCATION_FULFILLED":
