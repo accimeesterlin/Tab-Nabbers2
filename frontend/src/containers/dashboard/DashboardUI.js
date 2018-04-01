@@ -22,7 +22,7 @@ export const Events = (props) => {
 
 
     return (
-        <div className="events flex column wrap ">
+        <div className="events event-box flex column wrap ">
             <h3>Events: </h3>
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
@@ -49,7 +49,7 @@ export const Events = (props) => {
  * Tips layout
  * Layout 2 blocks
  */
-export const Tips = () => <div className="tips flex around column">
+export const Tips = () => <div className="tips event-box flex around column">
     <div>
         <h3>Recommendations: </h3>
         <p>
@@ -58,7 +58,7 @@ export const Tips = () => <div className="tips flex around column">
             nobis quam fugiat illum molestiae illo excepturi esse iure. Officiis, accusantium.
         </p>
     </div>
-    <div className="top_tip">
+    <div className="top_tip img-footer">
         <div>
             <p>Portfolio</p>
         </div>
@@ -77,7 +77,7 @@ export const Tips = () => <div className="tips flex around column">
  * Recommendations layout 
  * Layout 3 blocks
  */
-export const Recommendations = () => <div className="resources">
+export const Recommendations = () => <div className="resources event-box">
     <h3>Tips and hackathons: </h3>
     <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
@@ -85,7 +85,7 @@ export const Recommendations = () => <div className="resources">
         nobis quam fugiat illum molestiae illo excepturi esse iure. Officiis, accusantium.
     </p>
 
-    <div className="interview_tip">
+    <div className="interview_tip img-footer">
         <div>
             <p>Tips about Interviews</p>
         </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route } from "react-router-dom";
+import "./App.css";
+
 import {
   Events,
   Profile,
@@ -11,7 +13,6 @@ import {
   Confirmation,
   Integrations
 } from "./containers";
-import "./App.css";
 
 
 const Routes = (props) => (

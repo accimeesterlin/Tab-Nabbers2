@@ -12,7 +12,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import reducers from './reducers/index';
-import 'react-notifications/lib/notifications.css';
 import App from "./App";
 
 const middleware = applyMiddleware(promise(), logger);
