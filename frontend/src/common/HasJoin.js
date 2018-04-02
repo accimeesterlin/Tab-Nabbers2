@@ -50,6 +50,9 @@ const Join = (props) => {
 
                     <button className="btn"> { actionButton } </button>
 
+                    <Link to="/resetpassword"> Forgot password </ Link>
+                    
+
                     <p>By joining, you agree to the Terms and Privacy Policy.</p>
 
                 </form>

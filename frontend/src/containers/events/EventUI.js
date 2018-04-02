@@ -55,7 +55,7 @@ export const DisplayEvents = (props) => {
     
 
     return (
-        <div className={"flex wrap center " + pendingClass}>
+        <div className={"flex wrap center event-content " + pendingClass}>
 
             {props.eventbrites.events.length === 0 ? <h2 className = "notfound">No Events Found</h2> : eventsView}
         </div>
@@ -78,7 +78,7 @@ export const Search = (props) => {
     
 
     return (
-        <div  id= {NotFound}>
+        <div  id= {NotFound} className = "event-content">
             <div className="search flex center ">
                 <form className="flex main-center ui form column" onSubmit={onSubmit}>
                     <div className="field" >
@@ -109,8 +109,8 @@ export const Sidebar = (props) => {
     } = props;
 
     return (
-        <div >
-            <ul className="sidebar">
+        <div className = "sidebar">
+            <ul>
                 <li onClick={(event) => change_view("Search", event)} className={current_button["search"]}>Search</li>
                 <li onClick={(event) => change_view("Allevents", event)} className={current_button["allevents"]}>Events</li>
                 <li onClick={(event) => change_view("Saved", event)} className={current_button["saved"]}>Saved</li>

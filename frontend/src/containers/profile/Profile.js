@@ -74,7 +74,7 @@ const Info = () => (
 );
 
 const Credentials = () => (
-    <div className="credentials flex main-center column wrap ">
+    <div className="profile-credentials">
         <div>
             <h3>Warning</h3>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum maxime iusto
@@ -143,7 +143,7 @@ const Content = (props) => {
     return (
         <div className="content profile flex between">
             <Sidebar {...props} />
-            <div className="edit">
+            <div className="profile-content">
                 {sub_components[props.view](props)}
             </div>
         </div>
@@ -152,7 +152,7 @@ const Content = (props) => {
 
 
 const Sidebar = (props) => (
-    <div className="sidebar">
+    <div className="profile-sidebar">
         <ul className="flex center column">
             <li onClick={() => props.change_view("Info")} className={props.current["Info"]}>Info</li>
             <li onClick={() => props.change_view("Settings")} className={props.current["Settings"]}>Settings</li>

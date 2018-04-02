@@ -51,19 +51,22 @@ class ResetPassword extends Component {
 
         const pendingClass = this.props.reset_password.pending ? " loading" : "";
         return (
-            <div className="ui flex main-center center column resetpassword">
-                {errorMessage}
-            
-                <form className={"ui form" + pendingClass} onSubmit={this.submit}>
-                    <div>
-                        <label htmlFor="email">Reset Password</label>
-                        <input type="email" name="email" required placeholder="Enter your email" onChange={this.getValues} />
-                    </div>
-                    <button className="ui basic primary button" >Reset Password </button>
-                </form>
+            <section className="ui flex main-center center column password">
+                <div className = "resetpassword">
+                    {errorMessage}
+
+                    <form className={"ui form" + pendingClass} onSubmit={this.submit}>
+                        <h4>Enter your email to reset your password</h4>
+                        <div>
+                            <label htmlFor="email"></label>
+                            <input type="email" name="email" required placeholder="Enter your email" onChange={this.getValues} />
+                        </div>
+                        <button className="ui basic primary button" >Reset Password </button>
+                    </form>
+                </div>
 
 
-            </div>
+            </section>
         );
     }
 }

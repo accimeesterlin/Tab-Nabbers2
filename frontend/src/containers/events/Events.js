@@ -96,7 +96,6 @@ class Events extends Component {
     };
 
     saved = (obj) => {
-        console.log("Checking");
         this.props.savedEvent(obj.id)
             .then((data) => {
                 this.props.getSavedEvents();  // # Bad for Perfomance   
@@ -133,7 +132,7 @@ const switch_component = {
 const Content = (props) => {
     const { view } = props;
     return (
-        <div className="content search_events flex between">
+        <div className="search_events flex between">
             <Sidebar {...props} />
             {switch_component[view](props)}
         </div>
