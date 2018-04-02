@@ -1,15 +1,19 @@
 @import "../../base/_global.scss";
 
-.dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
+.main-events {
+    // max-width: 1200px;
+    margin: 100px auto;
     text-align: center;
+    position: relative;
+    z-index: 1;
 
 
     .event-box {
         width: 100%;
         margin-bottom: 90px;
         padding: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .top_event div {
@@ -56,8 +60,9 @@
     .resources {
         // border: 4px solid blue;
         text-align: center;
-        padding: 30px;
-        background: #6F9FD8;
+        padding: 7em;
+        background: $accent-color;
+
     }
 
     .resources p {
@@ -72,7 +77,9 @@
     .tips {
         // border: 5px solid purple;
         text-align: center;
-        padding: 20px;
+        padding: 9em;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .tips .top_tip {

@@ -23,34 +23,37 @@ const Join = (props) => {
 
     const errorClass = error ? "error" : null;
     const pendingClass = pending ? "loading" : null;
+    const actionButton = name === "login" ? "Login" : "Join";
 
     console.log("Props: ", props);
-    
+
 
     return (
         <section>
 
-            <Buttons {...props} />
+            <div>
+                <Buttons {...props} />
 
-            <ErrorMessage {...props} error = {error}/>
+                <ErrorMessage {...props} error={error} />
 
-            <form className={"ui form " + pendingClass} onSubmit={props.submit}>
-                <NameField {...props} />
+                <form className={"ui form " + pendingClass} onSubmit={props.submit}>
+                    <NameField {...props} />
 
-                <div className={"field " + errorClass}>
-                    <label>Email </label>
-                    <input required type="text" name="email" placeholder="Email" onChange={props.getValues} />
-                </div>
-                <div className="field">
-                    <label>Password <span>(min. 6 char)</span></label>
-                    <input required type="password" name="password" placeholder="Password" onChange={props.getValues} />
-                </div>
+                    <div className={"field " + errorClass}>
+                        <label>Email </label>
+                        <input required type="text" name="email" placeholder="Email" onChange={props.getValues} />
+                    </div>
+                    <div className="field">
+                        <label>Password <span>(min. 6 char)</span></label>
+                        <input required type="password" name="password" placeholder="Password" onChange={props.getValues} />
+                    </div>
 
-                <button className="btn"> Join </button>
+                    <button className="btn"> { actionButton } </button>
 
-                <p>By joining, you agree to the Terms and Privacy Policy.</p>
+                    <p>By joining, you agree to the Terms and Privacy Policy.</p>
 
-            </form>
+                </form>
+            </div>
 
         </section>
     )

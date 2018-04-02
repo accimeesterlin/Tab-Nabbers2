@@ -23,7 +23,7 @@ export const Events = (props) => {
 
     return (
         <div className="events event-box flex column wrap ">
-            <h3>Events: </h3>
+            <h3>Participate in tech events </h3>
             <p>
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
                 odit accusantium incidunt minus, eaque et tempora vitae expedita cupiditate
@@ -51,7 +51,7 @@ export const Events = (props) => {
  */
 export const Tips = () => <div className="tips event-box flex around column">
     <div>
-        <h3>Recommendations: </h3>
+        <h3>Get started </h3>
         <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
             odit accusantium incidunt minus, eaque et tempora vitae expedita cupiditate
@@ -60,13 +60,13 @@ export const Tips = () => <div className="tips event-box flex around column">
     </div>
     <div className="top_tip img-footer">
         <div>
-            <p>Portfolio</p>
+            <p>Add your Portfolio</p>
         </div>
         <div>
             <p>Connect with folks</p>
         </div>
         <div>
-            <p>Start looking</p>
+            <p>Find a coach</p>
         </div>
     </div>
 </div>
@@ -77,23 +77,25 @@ export const Tips = () => <div className="tips event-box flex around column">
  * Recommendations layout 
  * Layout 3 blocks
  */
-export const Recommendations = () => <div className="resources event-box">
-    <h3>Tips and hackathons: </h3>
-    <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
+export const Recommendations = () => <section className="resources">
+    <div className = "event-box">
+        <h3>Tips and hackathons: </h3>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis
         odit accusantium incidunt minus, eaque et tempora vitae expedita cupiditate
         nobis quam fugiat illum molestiae illo excepturi esse iure. Officiis, accusantium.
     </p>
 
-    <div className="interview_tip img-footer">
-        <div>
-            <p>Tips about Interviews</p>
-        </div>
-        <div>
-            <p>Participate in Hackathons</p>
+        <div className="interview_tip img-footer">
+            <div>
+                <p>Tips about Interviews</p>
+            </div>
+            <div>
+                <p>Participate in Hackathons</p>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 
 export const Content = (props) => {

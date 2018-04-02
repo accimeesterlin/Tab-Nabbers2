@@ -6,8 +6,8 @@ import {
 import "./header.css";
 
 const Header = (props) => (
-    <header className="header flex between">
-        <Link to = "/"><h1>Bootcruit </h1></Link>
+    <header className="header flex between main-center">
+        <div></div>
         <ul className="flex around">
             <li><NavLink to="/dashboard" >Dashboard</NavLink></li>
             <li><NavLink to="/events">Events</NavLink></li>
