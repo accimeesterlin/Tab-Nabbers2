@@ -1,0 +1,132 @@
+.search_events {
+    margin: 130px auto;
+    max-width: 1200px;;
+
+    .sidebar {
+        width: 15%;
+        position: fixed;
+        display: block;
+        height: 73vh;
+        
+    }
+
+    .sidebar ul {
+        position: relative;
+        top: 5em;
+
+        li {
+            margin: 15px;
+            padding: 11px;
+            cursor: pointer;
+        }
+    }
+
+
+
+    
+    & > .event-content {
+        width: 85%;
+        border-left: 1px solid #efe8ed;
+        background: #f1f3f5;
+        margin-left: 15%;
+        .search {
+            form {
+                width: 100%;
+                div {
+                    width: 50%;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+
+
+    & > #notFound{
+        background: #fff;
+        height: 100vh;
+
+        h2{
+            margin-top: 2em;
+        }
+        
+    }
+
+    .loading{
+        background: #f1f3f5;
+    }
+    .week {
+        border: 1px solid #efe8ed;
+        border-radius: 4px;
+        position: relative;
+        padding: 20px;
+        overflow:hidden;
+        margin: 20px;
+        width: 280px;
+        height: 280px;
+        opacity: 0;
+        background: #fff;
+        box-shadow: 3px 7px 10px 2px #efe8ed;
+        animation: fadein 500ms ease-in-out forwards;
+        img {
+            width: 100%;
+        }
+
+        .icons {
+            position: absolute;
+            bottom: 20px;
+            right: 15px;
+            font-size: 18px;
+            opacity: 0;
+
+            .saved {
+                color: #0938f5;
+                opacity: 1;
+            }
+            
+            i {
+                margin-left: 10px;
+                cursor: pointer;
+                color:#555;
+            }
+        }
+
+        &:hover .icons {
+            opacity: 1;
+        }
+    }
+    .info {
+        display: none;
+    }
+    .current {
+        width: 100%;
+        margin: 0;
+        border-right-color: #fff;
+        background: #f1f3f5;
+    }
+
+
+    
+}
+
+@media (max-width:414px) {
+    .search_events {
+        & > div:first-child {
+            width: 27%;
+        }
+        & > div:last-child {
+            width: 73%;
+            border-left: 1px solid #efe8ed;
+            background: #f1f3f5;
+            margin-left: 27%;
+            .search {
+                form {
+                    width: 100%;
+                    .form-group {
+                        width: 80%;
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

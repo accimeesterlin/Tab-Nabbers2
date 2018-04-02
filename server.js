@@ -2,7 +2,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     path = require("path"),
     mongoose = require('mongoose'),
-    countAndCreateUser = require('./back/db/seedUser'),
+    countAndCreateUser = require('./backend/db/seedUser'),
     cookieParser = require('cookie-parser');
 
 
@@ -39,17 +39,17 @@ app.use(cookieParser());
 
 
 
-const authenticate = require("./back/routes/api");
+const authenticate = require("./backend/routes/api");
 app.use("/secure", authenticate);
 
 
   
 
 if (process.env.NODE_ENVIROMENT === "PRODUCTION") {
-    app.use(express.static(path.join(__dirname + "/front/build"))) // static folders
+    app.use(express.static(path.join(__dirname + "/frontend/build"))) // static folders
 
     app.get("*", function (req, res) {
-        res.sendFile(path.join(__dirname + "/front/build/index.html"));
+        res.sendFile(path.join(__dirname + "/frontend/build/index.html"));
     });
 } else {
     console.log(`

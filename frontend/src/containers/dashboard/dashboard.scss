@@ -1,0 +1,93 @@
+@import "../../base/_global.scss";
+
+.main-events {
+    // max-width: 1200px;
+    margin: 100px auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+
+    .event-box {
+        width: 100%;
+        margin-bottom: 90px;
+        padding: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .top_event div {
+        width: 320px;
+        background: #fff;
+        margin: 20px;
+        padding: 10px;
+        border: 1px solid #efe8ed;
+        border-radius: 4px;
+        cursor: pointer;
+        animation: fadein 500ms ease-in-out;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .img-footer {
+
+        p {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(3, 0, 0, 0.45);
+            padding: 10px;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        div {
+            position: relative;
+            width: 50%;
+            margin:10px;
+            background: #fff;
+            height: 350px;
+            border: 1px solid #efe8ed;
+            @extend %bg-image;
+            background-image: url("http://via.placeholder.com/350x150");
+            
+        }
+    }
+    
+
+    .resources {
+        // border: 4px solid blue;
+        text-align: center;
+        padding: 7em;
+        background: $accent-color;
+
+    }
+
+    .resources p {
+        color: #fff;
+    }
+
+    .resources .interview_tip {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .tips {
+        // border: 5px solid purple;
+        text-align: center;
+        padding: 9em;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .tips .top_tip {
+        display: flex;
+        justify-content: center;
+        
+        div {  
+            height: 150px;
+        }
+    }
+}
