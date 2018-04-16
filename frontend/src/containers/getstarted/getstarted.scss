@@ -1,0 +1,26 @@
+
+
+.basic {
+    margin: 100px auto;
+    width: 360px;
+    max-width: 360px;
+}
+
+.general {
+
+    .labeled {
+        margin-top: 20px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    a button{
+        width: 100px;
+        margin: 0 auto;
+    }
+}

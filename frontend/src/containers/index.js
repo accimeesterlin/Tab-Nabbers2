@@ -3,20 +3,20 @@ import Profile from "./profile/Profile";
 import Events from "./events/Events";
 import Signin from "./signin/Signin";
 import Join from "./join/Join";
-import ResetPassword, {Confirmation} from "./resetpassword/ResetPassword";
+import ResetPassword, { Confirmation } from "./resetpassword/ResetPassword";
 import NewPassword from "./newpassword/NewPassword";
 import Integrations from "./integrations/Integrations";
-
-
+import GetStarted from "./getstarted/GetStarted";
 
 export {
-    Events,
-    Profile,
-    Dashboard,
-    Signin,
-    Join,
-    ResetPassword,
-    NewPassword,
-    Confirmation,
-    Integrations,
-}
+  Events,
+  Profile,
+  Dashboard,
+  Signin,
+  Join,
+  ResetPassword,
+  NewPassword,
+  Confirmation,
+  Integrations,
+  GetStarted
+};

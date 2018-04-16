@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
 
@@ -11,14 +11,15 @@ import {
   ResetPassword,
   NewPassword,
   Confirmation,
-  Integrations
+  Integrations,
+  GetStarted
 } from "./containers";
 
-
-const Routes = (props) => (
+const Routes = props => (
   <div className="main">
     <Route exact path="/" component={Signin} />
     <Route exact path="/join" component={Join} />
+    <Route path="/welcome" component={GetStarted} />
     <Route exact path="/dashboard" component={Dashboard} />
     <Route exact path="/profile" component={Profile} />
     <Route exact path="/events" component={Events} />
