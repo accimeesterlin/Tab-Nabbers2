@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Message, Icon } from "semantic-ui-react";
 import "./signin.css";
 import { Redirect } from "react-router-dom";
 export default class Join extends Component {

@@ -68,6 +68,7 @@ class JoinUI extends Component {
               <Link to="/resetpassword"> Forgot password </Link>
 
               <p>By joining, you agree to the Terms and Privacy Policy.</p>
+            
             </form>
           </div>
         </section>
