@@ -12,6 +12,8 @@ const Footer = () => (
             </ul>
         </div>
 
+         
+
 
         <div>
             <ul className = "flex center">
