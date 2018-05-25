@@ -1,30 +1,33 @@
+import SubmitForm from "../../hoc/SubmitForm"; // HOC
 
-import HasLogin from "../../hoc/HasLogin"; // HOC
+import SigninUI from "./SigninUI";
+import { connect } from "react-redux";
+import { login, getValues } from "./actions";
 
-import Join from "../../common/HasJoin";
-import {
-    connect
-} from "react-redux";
-import {
-    login,
-    getValues
-} from "./actions";
+const SubmitLogin = SubmitForm(SigninUI); // HOC
 
-const methods = {
-    joinOrLogin: login,
-    getValues
+const mapPropsToState = state => {
+  const signin = state.signin;
+  const error = signin.error;
+  const status = signin.status;
+
+  const pendingClass = status === "pending" ? "loading" : "fulfilled";
+  const errorClass = status === "rejected" ? "error" : "fulfilled";
+
+  return {
+    errorClass,
+    pendingClass,
+    error,
+    status
+  };
 };
 
-
-const url = "/secure/signin";
-
-const Login = HasLogin(methods, "login", url)(Join); // HOC
-
-
-const mapPropsToState = (state) => {
-    return {
-        signin: state.signin,
-        user: state.user
-    }
+const mapDispatchToProps = dispatch => {
+  return {
+    submitForm: data => dispatch(login(data)),
+    getValue: data => dispatch(getValues(data))
+  };
 };
-export default connect(mapPropsToState)(Login);
+
+const Login = connect(mapPropsToState, mapDispatchToProps)(SubmitLogin);
+export default Login;

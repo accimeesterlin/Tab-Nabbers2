@@ -1,13 +1,8 @@
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
 import Loader from "./loader/Loader";
-import Input from "./form/input/Input";
+import Text from "./form/Text/Text";
+import Select from "./form/Select/Select";
+import Textarea from "./form/Textarea/Textarea";
 
-
-
-export {
-    Footer,
-    Header,
-    Loader,
-    Input
-}
+export { Footer, Header, Loader, Text, Select, Textarea };

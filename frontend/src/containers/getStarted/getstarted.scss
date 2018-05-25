@@ -24,3 +24,20 @@
         margin: 0 auto;
     }
 }
+
+.basic-info-container {
+
+    img {
+        width: 100px;
+    }
+
+    a {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    a button {
+        width: 150px;
+    }
+}

@@ -1,35 +1,39 @@
 const initialState = {
-    error: undefined,
-    authenticated: false, // global
-    pending: false,
+  error: "Error Occurs",
+  status: ""
 };
-
 
 const signup = (state = initialState, action) => {
+  switch (action.type) {
+    case "SIGN_UP_FULFILLED":
+      return {
+        ...state,
+        status: "fulfilled"
+      };
+    case "SIGN_UP_REJECTED":
+      const response = action.payload.response;
+      const error = response.data.error;
+      return {
+        ...state,
+        error,
+        status: "rejected"
+      };
 
-    switch (action.type) {
-        case "SIGN_UP_FULFILLED":
-            return {
-                ...state,
-                pending: false
-            };
-        case "SIGN_UP_REJECTED":
-            return {
-                ...state,
-                error: action.payload.response.data.error,
-                pending: false
-            };
+    case "GET_VALUES_SIGNUP":
+      return {
+        ...state,
+        status: ""
+      };
 
-        case "SIGN_UP_PENDING":
-            return {
-                ...state,
-                pending: true
-            };
+    case "SIGN_UP_PENDING":
+      return {
+        ...state,
+        status: "pending"
+      };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
-
 
 export default signup;

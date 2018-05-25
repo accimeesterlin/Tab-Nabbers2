@@ -4,9 +4,9 @@ import Events from "./events/Events";
 import Signin from "./signin/Signin";
 import Join from "./join/Join";
 import ResetPassword, { Confirmation } from "./resetpassword/ResetPassword";
-import NewPassword from "./newpassword/NewPassword";
+import NewPassword from "./setNewPassword/SetNewPassword";
 import Integrations from "./integrations/Integrations";
-import GetStarted from "./getstarted/GetStarted";
+import GetStarted from "./getStarted/GetStarted";
 
 export {
   Events,

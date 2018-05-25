@@ -1,58 +1,72 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Message, Icon } from "semantic-ui-react";
-import "./signin.css";
+import "./Join.css";
 import { Redirect } from "react-router-dom";
-export default class Join extends Component {
+
+class JoinUI extends Component {
   render() {
-    const { pendingClass, errorClass, error, status } = this.props;
+    const { status, pendingClass, error, errorClass } = this.props;
 
     if (status === "fulfilled") {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to = "/welcome/basic"/>;
     } else {
       return (
-        <section className="credentials login">
-          <div className="signin-container">
+        <section className="credentials join">
+          <div className="join-container">
             <div className="credentials_btn">
-              <button className="active">Login</button>
-              <Link to="/join">
-                <button className="">Join</button>
+              <Link to="/">
+                {" "}
+                <button>Login</button>{" "}
               </Link>
+              <button className="active">Join</button>
             </div>
 
             {this.props.displayMessage(status, error)}
 
             <form
-              className={`ui form  ${pendingClass}`}
+              className={"ui form " + pendingClass}
               onSubmit={this.props.submit}
             >
+              <div className="field">
+                <label>
+                  Name <span>(Firstname and Lastname)</span>
+                </label>
+                <input
+                  required
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  onChange={this.props.handleChange}
+                />
+              </div>
+
               <div className={"field " + errorClass}>
                 <label>Email </label>
                 <input
+                  required
                   type="text"
                   name="email"
                   placeholder="Email"
                   onChange={this.props.handleChange}
-                  required
                 />
               </div>
-
-              <div className={"field " + errorClass}>
+              <div className="field">
                 <label>
                   Password <span>(min. 6 char)</span>
                 </label>
                 <input
+                  required
                   type="password"
                   name="password"
                   placeholder="Password"
                   onChange={this.props.handleChange}
-                  required
                 />
               </div>
 
-              <button className="btn disabled"> Login </button>
+              <button className="btn"> Join </button>
 
-              <Link to="/resetpassword"> Forgot password</Link>
+              <Link to="/resetpassword"> Forgot password </Link>
+
               <p>By joining, you agree to the Terms and Privacy Policy.</p>
             </form>
           </div>
@@ -61,3 +75,5 @@ export default class Join extends Component {
     }
   }
 }
+
+export default JoinUI;
