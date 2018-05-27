@@ -10,3 +10,4 @@ package-lock.json
 .project
 .yarn-lock
 .env
+environment.json

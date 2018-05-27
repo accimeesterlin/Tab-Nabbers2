@@ -51,6 +51,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-watch": "^2.0.7",
+    "chalk": "^2.4.1",
     "css-loader": "^0.28.4",
     "enzyme": "^2.9.1",
     "eslint": "^4.3.0",
@@ -68,6 +69,7 @@
     "react-edit-inline": "^1.0.8",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.7",
+    "shelljs": "^0.8.2",
     "style-loader": "^0.18.2"
   },
   "jest": {
@@ -79,13 +81,14 @@
     "test": "jest",
     "test:front": "npm test -- --watch",
     "start": "node server.js",
-    "dev": "npm-run-all --parallel front back",
-    "front": "cd frontend && npm start",
-    "build": "cd front && npm run build",
+    "config": "node nodeScripts.js --",
+    "local": "npm-run-all --parallel dev back",
+    "dev": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
     "back": "nodemon server.js",
     "lint": "node_modules/.bin/esw webpack.config.* ",
     "lint:watch": "npm run lint -- --watch",
-    "production": "npm-run-all build back"
+    "prod": "npm-run-all build back"
   },
   "repository": {
     "type": "git",
