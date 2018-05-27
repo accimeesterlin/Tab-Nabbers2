@@ -1,9 +1,10 @@
 # Tab Nabbers
 
-- [App](http://bootcruitphase1.herokuapp.com/) - Currently being built for the community by the community
+- [App](http://bootcruitphase2.herokuapp.com/) - Currently being built for the community by the community
 - Goal -  to help make job hunt easier
-- Instead of looking for a job, for the job to look for you
-- Get involved into the community
+- Let the job seek for you instead
+- Github, Stackoverflow progress can be imported
+- Share some of your portfolio projects
 
 > The best way to get involved into the community, is to be a part of it
 
@@ -14,8 +15,6 @@
 - Joining a network of full stack developers with different skill sets
 - Meeting other developers and extend your network
 - Giving back to the community
-
-
 
 
 
@@ -39,26 +38,53 @@ Step 1:
 
 Step 2:
 
-> git clone forked_repo
+> git clone forked_repo_url
 
+
+
+### Front End Developers Instructions
+
+Step 3
+> npm install
+
+Step 4
+> npm run config dev
+
+
+
+Finally, every time you want to start the app
+
+Run the following command
+> npm run dev
+
+
+
+
+
+### Full Stack Developers Instructions
 
 Step 3:
-> Create a file in the root folder, and name it ".env"
+> npm install
 
 
 Step 4:
-> Copy everything inside the ".env-example" file and paste them inside the ".env" file. You might need to fill in your own credentials, basic credentials provided for you. 
+> npm run config local
+
+Step 5
+> mongod
+
+Every time you want to start the app
+
+Run the following command
+> npm run local
 
 
-Step 5:
 
-Open your terminal and run the below command in the root of the project, and also inside the "front" folder
-> npm install
+### Contributing Guide
 
-Step 6:
+Every Pull Request (PR) should be made to the master branch. 
 
-In the root folder, run the following command
-> npm run dev
+Every commit's messages should follow the [convetional commits](https://conventionalcommits.org/)
 
 
 
@@ -66,6 +92,7 @@ In the root folder, run the following command
   - Front End (React.js, Redux, JavaScript, Axios, D3, Sass)
   - Back End (Node.js, express, Mongoose, etc )
   - Designers
+  - Report issue
   - Genius Idea's
   - Unit Testing
   - Integration Testing
@@ -75,7 +102,7 @@ In the root folder, run the following command
 
   
   
-## Technology
+## Technology and Tools
   - React
   - Redux
   - React Semantic UI (Semantic UI)
@@ -89,6 +116,13 @@ In the root folder, run the following command
   - Enzyme
   - Docker
   - Eslint
+  - Webdriver IO
+  - Bcryptjs
+  - Babel
+  - Formidable
+  - Momentjs
+  - AWS
+
 
 
 ## API
