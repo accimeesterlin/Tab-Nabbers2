@@ -1,4 +1,3 @@
-
 const User = require("../models/user");
 const axios = require("axios");
 
@@ -8,26 +7,38 @@ module.exports = {
             id
         } = req.body;
 
-        User.findOne({ email: req.email })
+        User.findOne({
+                email: req.email
+            })
             .then((user) => {
                 if (user.favorite.includes(id)) {
-                    res.status(409).json({ error: "Already saved!" });
+                    res.status(409).json({
+                        error: "Already saved!"
+                    });
                 } else {
                     user.favorite.push(id);
                     user.save((err) => {
                         if (err)
-                            res.status(409).json({ error: "Not able to save" });
-                        res.json({ msg: "Data has successfully been saved" });
+                            res.status(409).json({
+                                error: "Not able to save"
+                            });
+                        res.json({
+                            msg: "Data has successfully been saved"
+                        });
                     });
                 }
             })
-            .catch((err) => res.status(409).json({ error: "Not able to save it" }));
+            .catch((err) => res.status(409).json({
+                error: "Not able to save it"
+            }));
     },
 
 
     allSaveEvents: (req, res, next) => {
 
-        User.findOne({ email: req.email })
+        User.findOne({
+                email: req.email
+            })
             .then((user) => {
                 const favorites = user.favorite; // favorites
                 const savedEvents = [];
@@ -49,14 +60,18 @@ module.exports = {
                 getFavorite()
                     .then((data) => res.json({
                         favorite: data,
-                        id:user.favorite
+                        id: user.favorite
                     }))
-                    .catch((err) => res.status(409).json({error: "Not pulling events"}));
+                    .catch((err) => res.status(409).json({
+                        error: "Not pulling events"
+                    }));
 
             })
-            .catch((err) => res.status().json({ error: "Not able to fetch data" }));
+            .catch((err) => res.status().json({
+                error: "Not able to fetch data"
+            }));
     },
 
-    
+
 
 };

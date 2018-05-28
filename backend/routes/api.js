@@ -22,7 +22,7 @@ const {
 } = Middleware;
 
 const {
-    eventbrite:{
+    eventbrite: {
         search
     }
 } = ThirdPartyApi;
@@ -45,7 +45,7 @@ router.post("/authorize", serviceRedirect);
 router.post("/token", verifyCookie, serviceToken);
 
 
-router.get("/list/integrations",verifyCookie, listIntegrations);
+router.get("/list/integrations", verifyCookie, listIntegrations);
 
 router.post("/signup", signup);
 

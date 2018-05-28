@@ -8,31 +8,36 @@ const AddressSchema = Schema({
   streetAddress: String
 });
 
-const CompanySchema = Schema(
-  {
-    address: AddressSchema,
-    company: {
-      companyName: String,
-      domainName: String
-    },
-    email: String,
-    firstName: String,
-    lastName: String,
-    phoneNumber: Number,
-    jobTitle: String,
-    requirements: [
-      {
-        summary: String,
-        years_experience: Number,
-        title: String,
-        available: Boolean,
-        technologies: [{ type: String }],
-        favorite_candidates: [{ type: String }]
-      }
-    ]
+const CompanySchema = Schema({
+  address: AddressSchema,
+
+  company: {
+    companyName: String,
+    domainName: String
   },
-  { timestamps: true }
-);
+  email: String,
+  firstName: String,
+  lastName: String,
+  phoneNumber: Number,
+  jobTitle: String,
+
+  requirements: [{
+    summary: String,
+    years_experience: Number,
+    title: String,
+    available: Boolean,
+    technologies: [{
+      type: String
+    }],
+
+    favorite_candidates: [{
+      type: String
+    }]
+  }]
+
+}, {
+  timestamps: true
+});
 
 const Company = mongoose.model("Company", CompanySchema);
 

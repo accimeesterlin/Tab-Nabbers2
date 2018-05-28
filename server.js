@@ -8,8 +8,11 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
+const User = require('./backend/models/user'); // testing
+
 // Loading External Files
-const authenticate = require("./backend/routes/api");
+const routes = require("./backend/handlers/routes");
+const routeHelper = require('./backend/handlers/routeHelper');
 const countAndCreateUser = require('./backend/db/seedUser');
 const serverConfig = require('./config');
 
@@ -40,11 +43,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use('/secure', authenticate);
+app.use('/', routes);
 
+app.use(routeHelper.success);
+app.use(routeHelper.error);
 
 if (NODE_ENVIROMENT === 'PRODUCTION') {
-    app.use(express.static(path.join(__dirname + BUILD_PATH))); // static folders
+    app.use(express.static(path.join(__dirname + BUILD_PATH))); // static folder
 
     app.get('*', function (req, res) {
         res.sendFile(path.join(__dirname + INDEX_HTML));

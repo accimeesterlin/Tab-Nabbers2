@@ -26,23 +26,29 @@ const zipcodeValid = [
  Sub Documents for user physical address
 */
 const addressSchema = Schema({
-  street_address: {
+
+  streetAddress: {
     type: String,
     trim: true
   },
+
   apartment_number: Schema.Types.Mixed,
+
   city: {
     type: String,
     trim: true
   },
+
   state: {
     type: String,
     trim: true
   },
+
   zipcode: {
     type: String,
     match: zipcodeValid
   },
+
   _id: false
 });
 
@@ -50,7 +56,9 @@ const addressSchema = Schema({
     User programming Skills
 */
 const skillSchema = Schema({
-  skills: [{ type: String }],
+  skills: [{
+    type: String
+  }],
   category: {
     type: String
     // match: [/^Library|Framework|Language$/],
@@ -58,162 +66,125 @@ const skillSchema = Schema({
   }
 });
 
-const userSchema = Schema(
-  {
-    name: {
-      type: String,
-      required: true
-    },
-
-    password: {
-      type: String
-    },
-    email: {
-      type: String,
-      unique: true,
-      match: emailValid,
-      minlength: 1
-    },
-
-    username: {
-      type: String
-    },
-
-    bio: String,
-    summary: String,
-    position: {
-      type: String
-    },
-
-    address: addressSchema,
-
-    looking_job: {
-      type: Boolean,
-      default: true
-    },
-
-    locked: {
-      type: String,
-      default: false
-    },
-
-    login_fail: {
-      type: Number,
-      default: 0
-    },
-
-    banned: {
-      type: Boolean,
-      default: false
-    },
-
-    favorite: [{ type: String }],
-
-    gender: {
-      type: String
-      // default: "",
-      // match: [/M|F/]
-    },
-
-    phoneNumber: {
-      type: String,
-      match: phonenumberValid,
-      trim: true
-    },
-
-    birthday: {
-      month: {
-        type: String
-      },
-      day: {
-        type: String
-      },
-      year: {
-        type: String
-      }
-    },
-
-    photo: {
-      type: String
-    },
-
-    photoUrl: {
-      type: String
-    },
-
-    skills: {
-      type: [skillSchema]
-    },
-
-    linkedIn: {
-      url: String,
-      avatar: String
-    },
-    portfolio_link: {
-      type: String
-    },
-
-    github: {
-      access_token: { type: String },
-      expires_in: { type: String },
-      refresh_token: { type: String },
-      scope: { type: String },
-      url: String,
-      avatar: String
-    },
-
-    google: {
-      access_token: { type: String },
-      refresh_token: { type: String },
-      expires_in: { type: String },
-      url: String,
-      avatar: String
-    },
-
-    eventbrite: {
-      access_token: { type: String },
-      expires_in: { type: String },
-      refresh_token: { type: String },
-      url: String,
-      avatar: String
-    },
-
-    tokens: [
-      {
-        access: {
-          type: String
-        },
-
-        token: {
-          type: String
-        }
-      }
-    ],
-
-    events: [{ type: Schema.Types.ObjectId, ref: "Event" }]
+const userSchema = Schema({
+  name: {
+    type: String,
+    required: true
   },
-  { timestamps: true }
-);
 
-userSchema.methods.generateAuthToken = function() {
-  let user = this;
-  let access = "auth";
-  let token = jwt
-    .sign({ _id: user._id.toHexString(), access: access }, "ilovejson")
-    .toString();
-  user.tokens.push({ access, token });
-  user.save().then(() => {
-    return token;
-  });
-};
+  password: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  email: {
+    type: String,
+    unique: true,
+    match: emailValid,
+    minlength: 1,
+    required: true
+  },
 
-userSchema.methods.generateHash = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+  username: String,
+  bio: String,
+  summary: String,
+  position: String,
 
-userSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.password);
-};
+  address: addressSchema,
+
+  looking_job: {
+    type: Boolean,
+    default: true
+  },
+
+  locked: {
+    type: String,
+    default: false
+  },
+
+  login_fail: {
+    type: Number,
+    default: 0
+  },
+
+  banned: {
+    type: Boolean,
+    default: false
+  },
+
+  favorite: [{
+    type: String
+  }],
+
+  gender: {
+    type: String
+    // default: "",
+    // match: [/M|F/]
+  },
+
+  phoneNumber: {
+    type: String,
+    match: phonenumberValid,
+    trim: true
+  },
+
+  birthday: {
+    month: String,
+    day: String,
+    year: String
+  },
+
+  photo: String,
+  photoUrl: String,
+
+  skills: {
+    type: [skillSchema]
+  },
+
+  linkedIn: {
+    url: String,
+    avatar: String
+  },
+
+  portfolio_link: String,
+
+  github: {
+    access_token: String,
+    expiresIn: String,
+    refreshToken: String,
+    scope: String,
+    url: String,
+    avatar: String
+  },
+
+  google: {
+    accessToken: String,
+    refreshToken: String,
+    expiresIn: String,
+    url: String,
+    avatar: String
+  },
+
+  eventbrite: {
+    accessToken: String,
+    expiressIn: String,
+    refreshToken: String,
+    url: String,
+    avatar: String
+  },
+
+  tokens: [{
+    access: String,
+    token: String
+  }],
+
+  events: [{
+    type: Schema.Types.ObjectId,
+    ref: "Event"
+  }]
+}, {
+  timestamps: true
+});
 
 const User = mongoose.model("User", userSchema);
 

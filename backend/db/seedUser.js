@@ -1,4 +1,7 @@
-const { user, users } = require("./dummyUsers");
+const {
+  user,
+  users
+} = require("./dummyUsers");
 const User = require("../models/user");
 
 /**

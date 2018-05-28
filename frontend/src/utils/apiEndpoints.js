@@ -24,21 +24,21 @@ const prodEndpoint = ''; // TODO
 // List of all our API's - local, dev, qa, and prod
 const config = {
   dev: {
-    signin_url: `${devEndpoint}/secure/signin`,
-    signup_url: `${devEndpoint}/secure/signup`,
-    get_events: `${devEndpoint}/secure/eventbrite/search?`
+    signin_url: `${devEndpoint}/signin`,
+    signup_url: `${devEndpoint}/signup`,
+    get_events: `${devEndpoint}/eventbrite/search?`
   },
 
   local: {
-    signin_url: "/secure/signin",
-    signup_url: "/secure/signup",
-    get_events: `/secure/eventbrite/search?`
+    signin_url: "/signin",
+    signup_url: "/signup",
+    get_events: `/eventbrite/search?`
   },
 
   qa: {
     signin_url: `${qaEndpoint}`,
     signup_url: `${prodEndpoint}`,
-    get_events: `${devEndpoint}/secure/eventbrite/search?`
+    get_events: `${devEndpoint}/eventbrite/search?`
   },
 
   external_api: {
