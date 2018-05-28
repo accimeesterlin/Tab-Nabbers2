@@ -3,13 +3,26 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = Schema({
-    favorites: {
-        event_id: String,
-        status: Boolean
+    id: {
+        type: String,
+        required: true
     },
-    past_events: [{
-        type: String
-    }]
+    name: {
+        type: String,
+        required: true
+    },
+    logo: {
+        type: String,
+        required: true
+    },
+    start: {
+        type: Date,
+        required: true
+    },
+    end: {
+        type: Date,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Event', eventSchema);

@@ -1,35 +1,70 @@
 const axios = require("axios");
+const api = require('../utils/api');
+const coreHelper = require('../utils/coreHelper');
+const eventBrite = (() => {
 
 
-module.exports = {
-    eventbrite: {
-        search: (req, res, next) => {
-            const {
-                q,
-                latitude,
-                longitude
-            } = req.query;
+    const filterEvents = (events) => {
+        const shortEventName = events.filter((el) => el.name.text.length <= 68);
+        return shortEventName;
+    };
 
-            const endpoint = "https://www.eventbriteapi.com/v3/events/search?";
-            const params = `q=${q}&categories=102&location.latitude=${latitude}&location.longitude=${longitude}&location.within=80mi`;
+    const saveEvent = (req, res, next) => {
 
-            axios({
-                    url: endpoint + params,
-                    headers: {
-                        "Authorization": `Bearer ${process.env.EVENTBRITE_KEY}`
-                    }
-                })
+        // TODO
+        // id
+        // name
+        // logo
+        // start
+        // end
 
-                .then((response) => {
-                    const events = response.data.events.filter((el) => el.name.text.length <= 68);
-                    res.json({
-                        events,
-                        pagination: response.data.pagination
-                    });
-                })
-                .catch((err) => res.status(409).json({
-                    error: err.response
-                }));
+    };
+
+
+    const searchEventsByLocation = async (req, res, next) => {
+        const {
+            q,
+            latitude,
+            longitude
+        } = req.query;
+
+        const endpoint = api.eventbrite_search;
+
+        const url = coreHelper.generateUrl(endpoint, {
+            q,
+            categories: 102,
+            'location.latitude': latitude,
+            'location.longitude': longitude,
+            'location.within': '80mi'
+        });
+
+        try {
+            const response = await axios({
+                url,
+                headers: {
+                    "Authorization": `Bearer ${process.env.EVENTBRITE_KEY}`
+                }
+            })
+            const events = filterEvents(response.data.events);
+
+            next({
+                events,
+                statusCode: 200
+            });
+        } catch (error) {
+            next({
+                error: error.response.data,
+                errorMessage: 'Not able to pull events ',
+                statusCode: 500,
+            });
         }
-    }
-};
+    };
+
+    // Features
+    return {
+        searchEventsByLocation,
+        saveEvent
+    };
+})();
+
+module.exports = eventBrite;
