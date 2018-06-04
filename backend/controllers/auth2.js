@@ -1,151 +1,118 @@
-const axios = require("axios");
-const User = require("../models/user");
-const qs = require("querystring");
+const coreHelper = require('../utils/coreHelper');
+require('dotenv').config();
+const {
+    GOOGLE_AUTH2_AUTHORIZE_ENDPOINT,
+    GOOGLE_AUTH2_TOKEN_ENDPOINT,
+    GOOGLE_CLIENT_ID,
+    GOOGLE_SECRET_ID,
+    GOOGLE_REDIRECT_URL,
+    GOOGLE_SCOPE,
+    GITHUB_AUTHORIZE_ENDPOINT,
+    GITHUB_TOKEN_ENDPOINT,
+    GITHUB_CLIENT_ID,
+    GITHUB_SECRET_ID,
+    GITHUB_REDIRECT_URL,
+    GITHUB_SCOPE,
+    EVENTBRITE_CLIENT_ID,
+    EVENTBRITE_CLIENT_SECRET,
+    EVENT_BRITE_AUTHORIZE_ENDPOINT,
+    EVENTBRITE_KEY,
+} = process.env;
 
 
-module.exports = {
+const auth2 = (() => {
 
-    /**
-     * Oauth 2 Authorize Github, Google, Event Brite
-     */
-    serviceRedirect: (req, res, next) => {
-        const {
-            service
-        } = req.body;
-
-        switch (service) {
-            case "github":
-                res.json({
-                    url: process.env.GITHUB_AUTHORIZE,
-                    service
-                });
-                break;
-
-            case "google":
-                res.json({
-                    url: process.env.GOOGLE_AUTHORIZE,
-                    service
-                });
-                break;
-
-            case "twitter":
-                res.redirect({
-                    url: process.env.TWITTER_AUTHORIZE,
-                    service
-                });
-                break;
-
-            case "eventbrite":
-                res.json({
-                    url: process.env.EVENTBRITE_AUTHORIZE,
-                    service
-                });
-                break;
-            default:
-                res.status409().json({
-                    error: "Please specify a service"
-                });
-        }
-    },
-
-
-    serviceToken: (req, res, next) => {
-        const {
-            code,
-            service
-        } = req.body;
-
-
-        /**
-         * Oauth 2 Get token from Services
-         * Google, Github, and Event Brite
-         */
-        const sendRequest = (url, service) => {
-            let data = {};
-            let headers = {};
-
-            if (service === "eventbrite") {
-                data = qs.stringify({
-                    code,
-                    client_id: process.env.EVENTBRITE_CLIENT_ID,
-                    client_secret: process.env.EVENTBRITE_CLIENT_SECRET,
-                    grant_type: "authorization_code"
-                });
-
-                headers = {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                };
-            } else {
-                headers = {
-                    Accept: "application/json"
-                };
-            }
-            axios({
-                    url,
-                    method: "POST",
-                    headers,
-                    data
-                })
-                .then((response) => {
-                    User.update({
-                            email: req.email
-                        }, {
-                            $set: {
-                                [service]: response.data
-                            }
-                        })
-                        .then((user) => res.json({
-                            [service]: "saved"
-                        }))
-                        .catch((err) => res.status(500).json({
-                            error: "Internal error"
-                        }));
-                })
-                .catch((err) => res.status(401).json({
-                    error: "Sorry, it didn't work"
-                }));
+    const auth2Object = (id, scope, redirect_uri) => {
+        return {
+            client_id: id,
+            scope,
+            redirect_uri
         };
+    };
+    // client_id: process.env.EVENTBRITE_CLIENT_ID,
+    // client_secret: process.env.EVENTBRITE_CLIENT_SECRET,
+    // grant_type: "authorization_code"
 
-        switch (service) {
-            case "google":
-                sendRequest(process.env.GOOGLE_TOKEN + "&code=" + code, service);
-                break;
-
-            case "github":
-                sendRequest(process.env.GITHUB_TOKEN + "&code=" + code, service);
-                break;
-
-            case "eventbrite":
-                sendRequest("https://www.eventbrite.com/oauth/token", service);
-                break;
-
-            default:
-                res.status(409).json({
-                    error: "No service provided"
-                });
+    const googleAuthObject = (type) => {
+        let googleAuth = auth2Object(GOOGLE_CLIENT_ID, GOOGLE_SCOPE, GOOGLE_REDIRECT_URL);
+        if (type === 'authorize') {
+            googleAuth.access_type = 'offline';
+            googleAuth.response_type = 'code';
+        } else {
+            googleAuth.secret = GOOGLE_SECRET_ID;
+            googleAuth.grant_type = 'authorization_code';
         }
-    },
+        return googleAuth;
+    };
+
+    const githubAuthObject = (type) => {
+        let githubAuth = auth2Object(GITHUB_CLIENT_ID, GITHUB_SCOPE, GITHUB_REDIRECT_URL);
+        if (type === 'token') {
+            githubAuth.secret = GITHUB_SECRET_ID;
+        }
+        return githubAuth;
+    };
+
+    const eventBriteObject = () => {
+        let eventBriteAuth = {
+            client_id: EVENTBRITE_CLIENT_ID,
+            response_type: 'code'
+        };
+        return eventBriteAuth;
+    };
+
+    const auth2Url = (type, service) => {
+        let url;
+        const googleAuthorize = googleAuthObject('authorize');
+        const githubAuthorize = githubAuthObject('authorize');
+        const eventBriteAuthorize = eventBriteObject();
+
+        const googleTokenUrl = googleAuthObject('token');
+        const githubTokenUrl = githubAuthObject('token');
+
+        if (type === 'authorize') {
+            switch (service) {
+                case 'google':
+                    url = coreHelper.generateUrl(GOOGLE_AUTH2_AUTHORIZE_ENDPOINT, googleAuthorize);
+                    break;
+                case 'github':
+                    url = coreHelper.generateUrl(GITHUB_AUTHORIZE_ENDPOINT, githubAuthorize);
+                    break;
+                case 'eventbrite':
+                    url = coreHelper.generateUrl(EVENT_BRITE_AUTHORIZE_ENDPOINT, eventBriteAuthorize);
+                    break;
+                default:
+                    url = '';
+                    break;
+            }
+        } else {
+            switch (service) {
+                case 'github':
+                    url = coreHelper.generateUrl(GITHUB_TOKEN_ENDPOINT, githubTokenUrl);
+                    break;
+
+                case 'google':
+                    url = coreHelper.generateUrl(GOOGLE_AUTH2_TOKEN_ENDPOINT, googleTokenUrl);
+                    break;
+
+                default:
+                    url = '';
+                    break;
+            }
+        }
+
+        return url;
+    };
 
 
-    listIntegrations: (req, res, next) => {
-        User.findOne({
-                email: req.email
-            })
-            .then((user) => {
-                const google = user.google.access_token ? true : false;
-                const github = user.github.access_token ? true : false;
-                const eventbrite = user.eventbrite.access_token ? true : false;
-                const twitter = user.twitter.access_token ? true : false;
+    // Features
+    return {
+        auth2Url, // authorize, github
 
-                res.json({
-                    google,
-                    twitter,
-                    eventbrite,
-                    github
-                });
-            })
-            .catch((err) => res.status(500).json({
-                error: "Internal Error"
-            }));
-    }
-};
+    };
+})();
+
+const result = auth2.auth2Url('authorize', 'github');
+console.log('Result: ', result);
+
+module.exports = auth2;

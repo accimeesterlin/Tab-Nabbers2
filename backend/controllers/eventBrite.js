@@ -1,6 +1,8 @@
 const axios = require("axios");
 const api = require('../utils/api');
 const coreHelper = require('../utils/coreHelper');
+const Event = require('../models/events');
+const User = require('../models/user');
 const eventBrite = (() => {
 
 
@@ -9,32 +11,68 @@ const eventBrite = (() => {
         return shortEventName;
     };
 
-    const saveEvent = (req, res, next) => {
+    const addEventToUserFavorite = async (event, userId, next) => {
+        const user = await User.findOneAndUpdate({
+            _id: userId
+        }, {
+            $push: {
+                favoriteEvents: event
+            }
+        });
 
-        // TODO
-        // id
-        // name
-        // logo
-        // start
-        // end
+        next({
+            statusCode: 200,
+            status: 'success',
+            message: 'Successfully saved into user'
+        });
+    };
 
+    const saveEventToFavorite = async (req, res, next) => {
+        try {
+            const userId = req.body.userId; // TODO get from cookies
+            const eventId = req.body.eventId;
+
+            const userInfo = await User.findOne({
+                _id: userId
+            });
+
+            const favoriteEvents = userInfo.favoriteEvents;
+
+            if (favoriteEvents.length === 0) {
+                addEventToUserFavorite(req.body, userId, next);
+            } else {
+                const checkExistingEvent = favoriteEvents.findIndex(e => e.eventId === eventId);
+
+                if (checkExistingEvent > -1) {
+                    next({
+                        errorMessage: 'Failed to add to your favorite',
+                        statusCode: 500,
+                        status: 'rejected',
+                        error: 'Failed adding to favorite'
+                    });
+                } else {
+                    addEventToUserFavorite(req.body, userId, next);
+                }
+            }
+        } catch (error) {
+            next({
+                errorMessage: error.message,
+                statusCode: 500,
+                status: 'rejected',
+                error: 'Failed to add event to favorite'
+            });
+        }
     };
 
 
     const searchEventsByLocation = async (req, res, next) => {
-        const {
-            q,
-            latitude,
-            longitude
-        } = req.query;
-
         const endpoint = api.eventbrite_search;
 
         const url = coreHelper.generateUrl(endpoint, {
-            q,
+            q: req.body.q,
             categories: 102,
-            'location.latitude': latitude,
-            'location.longitude': longitude,
+            'location.latitude': req.body.latitude,
+            'location.longitude': req.body.longitude,
             'location.within': '80mi'
         });
 
@@ -44,18 +82,20 @@ const eventBrite = (() => {
                 headers: {
                     "Authorization": `Bearer ${process.env.EVENTBRITE_KEY}`
                 }
-            })
+            });
             const events = filterEvents(response.data.events);
 
             next({
                 events,
-                statusCode: 200
+                statusCode: 200,
+                status: 'success'
             });
         } catch (error) {
             next({
                 error: error.response.data,
                 errorMessage: 'Not able to pull events ',
                 statusCode: 500,
+                status: 'rejected'
             });
         }
     };
@@ -63,7 +103,7 @@ const eventBrite = (() => {
     // Features
     return {
         searchEventsByLocation,
-        saveEvent
+        saveEventToFavorite
     };
 })();
 

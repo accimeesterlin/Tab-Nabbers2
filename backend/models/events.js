@@ -22,7 +22,11 @@ const eventSchema = Schema({
     end: {
         type: Date,
         required: true
-    }
+    },
+    users: [{
+        type: String,
+        ref: 'User'
+    }]
 });
 
 module.exports = mongoose.model('Event', eventSchema);

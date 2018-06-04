@@ -112,8 +112,12 @@ const userSchema = Schema({
     default: false
   },
 
-  favorite: [{
-    type: String
+  favoriteEvents: [{
+    eventId: String,
+    name: String,
+    logo: String,
+    start: Date,
+    end: Date
   }],
 
   gender: {

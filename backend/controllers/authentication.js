@@ -1,18 +1,22 @@
 // Loading Packages
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
-const sgTransport = require("nodemailer-sendgrid-transport");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const sgTransport = require('nodemailer-sendgrid-transport');
+const axios = require('axios');
 
 // Loading external files
-const User = require("../models/user");
-const coreHelper = require("../utils/coreHelper");
-const templates = require("../utils/templates");
+const User = require('../models/user');
+const coreHelper = require('../utils/coreHelper');
+const templates = require('../utils/templates');
+const auth2 = require('./auth2');
 
 const {
   SECRET
 } = process.env;
 
+
+// Module Design Patterns
 const authentication = (() => {
 
   const sendgridEmail = (email, subject) => {
@@ -31,7 +35,7 @@ const authentication = (() => {
     user.save((error) => {
       if (error) {
         next({
-          errorMessage: 'Not able to create user',
+          errorMessage: 'User already exist, try to login',
           status: 'rejected',
           statusCode: 500,
           message: error.message
@@ -79,22 +83,48 @@ const authentication = (() => {
   };
 
   const signin = async (req, res, next) => {
-    const {
-      email,
-      password
-    } = req.body;
+    try {
+      const {
+        email,
+        password
+      } = req.body;
 
-    const user = await User.findOne({
-      email
+      const user = await User.findOne({
+        email
+      });
+
+      comparePassword(password, user, next, res);
+    } catch (error) {
+      next({
+        errorMessage: error.message,
+        error: 'Error Login, user not found',
+        statusCode: 500,
+        status: 'rejected'
+      });
+    }
+  };
+
+  const authenticateWithService = (req, res, next) => {
+    const serviceName = req.params.name;
+    const url = auth2.auth2Url('authorize', serviceName)
+
+    next({
+      url,
+      status: 'success',
+      statusCode: 200,
+      service: serviceName
     });
+  };
 
-    comparePassword(password, user, next, res);
+  const obtainAccessToken = (req, res, next) => {
+    // TODO
   };
 
   // Features 
   return {
     signup,
-    signin
+    signin,
+    authenticateWithService
   };
 })();
 

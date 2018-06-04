@@ -5,5 +5,7 @@ const eventBrite = require('./eventBrite');
 module.exports = {
     signin: authentication.signin,
     signup: authentication.signup,
-    searchEventsByLocation: eventBrite.searchEventsByLocation
+    authenticateWithService: authentication.authenticateWithService,
+    searchEventsByLocation: eventBrite.searchEventsByLocation,
+    saveEventToFavorite: eventBrite.saveEventToFavorite
 };

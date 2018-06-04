@@ -25,17 +25,13 @@ const coreHelper = (() => {
 
     const generateUrl = (url, params) => {
         let endpoint = url;
-
         if (!url.includes('?')) {
             endpoint = url + '?';
         }
-
         for (let key in params) {
             endpoint = `${endpoint}${key}=${params[key]}&`;
         }
-
         return endpoint.slice(0, -1);
-
     };
 
     const setCookie = (res, user) => {
