@@ -11,44 +11,45 @@ const generateEndpoint = (config) => {
 
   endpoints = {
     ...endpoints,
-    ...config['external_api']
+    ...config['external']
   };
 
   return endpoints;
 };
 
 const devEndpoint = 'http://bootcruitphase2.herokuapp.com';
-const qaEndpoint = ''; // TODO
-const prodEndpoint = ''; // TODO
+const qaEndpoint = 'http://bootcruitphase2.herokuapp.com';
+const prodEndpoint = 'http://bootcruitphase2.herokuapp.com';
 
 // List of all our API's - local, dev, qa, and prod
 const config = {
   dev: {
-    signin_url: `${devEndpoint}/signin`,
-    signup_url: `${devEndpoint}/signup`,
-    get_events: `${devEndpoint}/eventbrite/search?`
+    signin: `${devEndpoint}/signin`,
+    signup: `${devEndpoint}/signup`,
+    events: `${devEndpoint}/eventbrite/search?`
   },
 
   local: {
-    signin_url: "/signin",
-    signup_url: "/signup",
-    get_events: `/eventbrite/search?`
+    signin: "http://localhost:3000/signin",
+    signup: "http://localhost:3000/signup",
+    events: `http://localhost:3000/eventbrite/search?`
   },
 
   qa: {
-    signin_url: `${qaEndpoint}`,
-    signup_url: `${prodEndpoint}`,
-    get_events: `${devEndpoint}/eventbrite/search?`
+    signin: `${qaEndpoint}`,
+    signup: `${prodEndpoint}`,
+    events: `${devEndpoint}/eventbrite/search?`
   },
 
-  external_api: {
-    github_endpoint: 'https://api.github.com',
-    event_brite_enpoint: ''
+  external: {
+    github: 'https://api.github.com'
   },
 
-  prod_endpoint: {}
+  prod: {}
 };
 
 const endpoint = generateEndpoint(config);
+
+console.log('Endpoint: ', endpoint);
 
 module.exports = endpoint;

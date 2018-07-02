@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addNewPassword } from "./actions";
 
-import "./newpassword.css";
+import "./setNewPassword.css";
 
 class NewPassword extends Component {
   getValues = ({ target: { name, value } }) => this.setState({ [name]: value });

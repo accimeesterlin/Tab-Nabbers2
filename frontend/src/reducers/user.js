@@ -2,7 +2,7 @@ const initial_state = {
   authenticated: false,
   pending: false,
   isGithubActive: false,
-  search: "",
+  search: '',
   email: "",
   github: {
     avartar_url: "",
@@ -44,13 +44,15 @@ const user = (state = initial_state, action) => {
     case "GET_LOCATION_FULFILLED":
       return {
         ...state,
-        location: { ...action.payload.data }
+        location: { ...action.payload.data
+        }
       };
 
     case "FETCH_GITHUB_PROFILE_FULFILLED":
       return {
         ...state,
-        github: { ...action.payload.data }
+        github: { ...action.payload.data
+        }
         // isGithubActive: true
       };
 
@@ -62,6 +64,15 @@ const user = (state = initial_state, action) => {
           ...action.data
         }
       };
+
+    case 'EVENTBRITE_SEARCH_FULFILLED':
+    case 'EVENTBRITE_SEARCH_PENDING':
+    case 'EVENTBRITE_SEARCH_REJECTED':
+      return {
+        ...state,
+        search: ''
+      };
+
     default:
       return state;
   }

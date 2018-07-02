@@ -1,8 +1,10 @@
 const initialState = {
     events: [],
     saved: [],
-    pending: false
-}; 
+    pending: 'fulfilled', // fulfilled, rejected, pending
+    error: false,
+    errorMessage: ''
+};
 
 
 const eventBrites = (state = initialState, action) => {
@@ -11,26 +13,24 @@ const eventBrites = (state = initialState, action) => {
             return {
                 ...state,
                 events: [...action.payload.data.events],
-                pending: false
+                pending: 'fulfilled',
+                error: false,
             };
 
         case "EVENTBRITE_SEARCH_PENDING":
             return {
                 ...state,
-                pending: true
+                pending: 'pending',
+                error: false
             };
 
         case "EVENTBRITE_SEARCH_REJECTED":
             return {
                 ...state,
-                events: [...action.payload],
-                pending: false
-            };
-         case "GET_SAVED_EVENTS_FULFILLED":
-            return {
-                ...state,
-                saved: [...action.payload.data.favorite],
-                ids:[...action.payload.data.id]
+                events: [],
+                pending: 'rejected',
+                error: true,
+                errorMessage: action.payload.response.data.errorMessage
             };
         default:
             return state;

@@ -3,8 +3,9 @@ const api = require('../utils/api');
 const coreHelper = require('../utils/coreHelper');
 const Event = require('../models/events');
 const User = require('../models/user');
-const eventBrite = (() => {
 
+// Module Design Pattern
+const eventBrite = (() => {
 
     const filterEvents = (events) => {
         const shortEventName = events.filter((el) => el.name.text.length <= 68);
@@ -68,13 +69,18 @@ const eventBrite = (() => {
     const searchEventsByLocation = async (req, res, next) => {
         const endpoint = api.eventbrite_search;
 
-        const url = coreHelper.generateUrl(endpoint, {
-            q: req.body.q,
+        const options = {
+            q: req.query.q,
             categories: 102,
-            'location.latitude': req.body.latitude,
-            'location.longitude': req.body.longitude,
-            'location.within': '80mi'
-        });
+        };
+
+        // Check if there is location
+        if (req.query.latitude && req.query.longitude) {
+            options['location.latitude'] = req.query.latitude;
+            options['location.longitude'] = req.query.longitude;
+            options['location.within'] = '80mi';
+        }
+        const url = coreHelper.generateUrl(endpoint, options);
 
         try {
             const response = await axios({
@@ -94,7 +100,7 @@ const eventBrite = (() => {
             next({
                 error: error.response.data,
                 errorMessage: 'Not able to pull events ',
-                statusCode: 500,
+                statusCode: error.response.data.status_code,
                 status: 'rejected'
             });
         }
