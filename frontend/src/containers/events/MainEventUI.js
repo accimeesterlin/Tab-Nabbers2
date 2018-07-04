@@ -15,7 +15,7 @@ import EventBox from '../../common/EventBox';
 import FavoritesUI from './FavoritesUI';
 
 
-class Events extends Component {
+export class Events extends Component {
 
     limitDescription = (text) => {
         if (typeof text === 'string') {
@@ -24,10 +24,26 @@ class Events extends Component {
         }
     };
 
+    addToFavorite = (event) => {
+        this.props.saveEvent({
+            eventId: event.id,
+            logo: event.logo.original.url,
+            date: event.start.local,
+            description: event.description.text,
+            title: event.name.text,
+            userId: '5b0cb8668fca36d7887da143' // TODO should be handle over cookies
+        });
+    };
+
     displayEvents = (events) => {
         if (events.length > 1) {
             return events.map((event, index) => (
-                <EventBox key={index} event={event} index={index} limitDescription={this.limitDescription} />
+                <EventBox
+                    key={index}
+                    event={event}
+                    index={index}
+                    addToFavorite={this.addToFavorite}
+                    limitDescription={this.limitDescription} />
             ));
         }
         return <p>No event found!</p>
@@ -56,7 +72,9 @@ class Events extends Component {
 
         switch (type) {
             case 'favorites':
-                return <FavoritesUI events={events} limitDescription={this.limitDescription} />;
+                return <FavoritesUI
+                    events={events}
+                    limitDescription={this.limitDescription} />;
 
             default:
                 return [

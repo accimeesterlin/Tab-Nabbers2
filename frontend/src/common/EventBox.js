@@ -15,7 +15,7 @@ const EventBox = (props) => {
             <div className="icons">
                 <i className="share alternate icon"></i>
                 <i className="calendar alternate icon"></i>
-                <i className='heart outline icon '></i>
+                <i className='heart outline icon ' onClick = {() => props.addToFavorite(event)}></i>
             </div>
 
             <div className="info">

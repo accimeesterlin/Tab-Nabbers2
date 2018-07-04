@@ -32,6 +32,7 @@ const eventBrites = (state = initialState, action) => {
                 error: true,
                 errorMessage: action.payload.response.data.errorMessage
             };
+
         default:
             return state;
     }

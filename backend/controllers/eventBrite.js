@@ -4,6 +4,17 @@ const coreHelper = require('../utils/coreHelper');
 const Event = require('../models/events');
 const User = require('../models/user');
 
+/*
+    Event: 
+        "eventId": "47203102751",
+        "userId": "5b0cb8668fca36d7887da143",
+        "description": "JavaScript is the language responsible for much of the beautiful parts of your digital life. Fall in love with the language thats only growing in fame, glamor, and attention by developers the world over.Let us know if you want to give a JS-related talk (20-30 minutes) or lightning talk (5 minutes) in English or Filipino.Sponsor:Nokia Technology Center Philippines CareersSpeakers:- TBA- TBA- TBALive the higher-order life of JavaScript with us. This event is free and open to anyone interested in all things JavaScript. Make sure to support the event sponsor and Amagi Academy who bring you the best in technology education around the Philippines.",
+        "title": "Manila JavaScript #28 - JavaScript Life",
+        "date": "2018-07-19T19:00:00",
+        "logo": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46260951%2F36553811998%2F1%2Foriginal.jpg?auto=compress&s=690c9a5b26a7eed42a723c75af702888"
+*/
+
+
 // Module Design Pattern
 const eventBrite = (() => {
 
@@ -12,20 +23,14 @@ const eventBrite = (() => {
         return shortEventName;
     };
 
-    const addEventToUserFavorite = async (event, userId, next) => {
-        const user = await User.findOneAndUpdate({
-            _id: userId
-        }, {
-            $push: {
-                favoriteEvents: event
+    const checkDuplicateEvent = (events, eventId) => {
+        let isDuplicated = false;
+        for (let i = 0; i < events.length; i++) {
+            if (events[i].eventId === eventId) {
+                isDuplicated = true;
             }
-        });
-
-        next({
-            statusCode: 200,
-            status: 'success',
-            message: 'Successfully saved into user'
-        });
+        }
+        return isDuplicated;
     };
 
     const saveEventToFavorite = async (req, res, next) => {
@@ -33,28 +38,30 @@ const eventBrite = (() => {
             const userId = req.body.userId; // TODO get from cookies
             const eventId = req.body.eventId;
 
-            const userInfo = await User.findOne({
+            const user = await User.findOne({
                 _id: userId
             });
 
-            const favoriteEvents = userInfo.favoriteEvents;
+            const events = user.favoriteEvents; 
+            let isDuplicated = checkDuplicateEvent(events, eventId);
 
-            if (favoriteEvents.length === 0) {
-                addEventToUserFavorite(req.body, userId, next);
-            } else {
-                const checkExistingEvent = favoriteEvents.findIndex(e => e.eventId === eventId);
-
-                if (checkExistingEvent > -1) {
-                    next({
-                        errorMessage: 'Failed to add to your favorite',
-                        statusCode: 500,
-                        status: 'rejected',
-                        error: 'Failed adding to favorite'
-                    });
-                } else {
-                    addEventToUserFavorite(req.body, userId, next);
-                }
+            if (isDuplicated) {
+                throw {
+                    message: 'Duplicate event'
+                };
             }
+
+            const saveEvent = await User.findOneAndUpdate({
+                _id: userId
+            }, {
+                $push: {
+                    favoriteEvents: req.body
+                }
+            });
+            next({
+                statusCode: 200,
+                message: 'Event Saved!'
+            });
         } catch (error) {
             next({
                 errorMessage: error.message,

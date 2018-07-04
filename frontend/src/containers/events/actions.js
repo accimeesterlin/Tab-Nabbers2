@@ -36,3 +36,14 @@ export const getLocation = () => {
     payload: axios.get('http://api.ipstack.com/check?access_key=38d19681eff59a8adeabb2d081c5db6a')
   };
 };
+
+export const saveEvent = (event) => {
+  return {
+    type: 'SAVE_EVENT',
+    payload: axios({
+      method: 'POST',
+      url: '/save/event',
+      data: event
+    })
+  };
+};

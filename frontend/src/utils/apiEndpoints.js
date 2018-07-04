@@ -4,16 +4,13 @@ const {
 
 const generateEndpoint = (config) => {
   let endpoints = {};
-
   if (environment) {
     endpoints = config[environment];
   }
-
   endpoints = {
     ...endpoints,
     ...config['external']
   };
-
   return endpoints;
 };
 
@@ -49,7 +46,5 @@ const config = {
 };
 
 const endpoint = generateEndpoint(config);
-
-console.log('Endpoint: ', endpoint);
 
 module.exports = endpoint;

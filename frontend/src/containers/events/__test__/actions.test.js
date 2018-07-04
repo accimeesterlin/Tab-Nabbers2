@@ -35,4 +35,15 @@ describe('Action creators', () => {
                 expect(actions[1].payload.data).toEqual(mockLocation);
             });
     });
+
+    it('Should return EVENTBRITE_SEARCH_FULFILLED action type ', () => {
+        const store = mockStore({});
+
+        return store.dispatch(eventBriteSearch('javascript', {}))
+            .then(() => {
+                const actions = store.getActions();
+                const type = actions[1].type;
+                expect(type).toEqual('EVENTBRITE_SEARCH_FULFILLED');
+            });
+    });
 });

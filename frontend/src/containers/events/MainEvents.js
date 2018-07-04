@@ -3,11 +3,10 @@ import {
     connect
 } from 'react-redux';
 
-
-
 import {
     eventBriteSearch,
     getValues,
+    saveEvent,
     getLocation
 } from "./actions";
 import Events from "./MainEventUI";
@@ -34,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         eventBriteSearch: (name, obj) => dispatch(eventBriteSearch(name, obj)),
         getValues: (data) => dispatch(getValues(data)),
-        getLocation: () => dispatch(getLocation())
+        getLocation: () => dispatch(getLocation()),
+        saveEvent: (event) => dispatch(saveEvent(event))
     }
 };
 

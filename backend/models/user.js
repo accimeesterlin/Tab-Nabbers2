@@ -114,10 +114,10 @@ const userSchema = Schema({
 
   favoriteEvents: [{
     eventId: String,
-    name: String,
     logo: String,
-    start: Date,
-    end: Date
+    date: Date,
+    description: String,
+    title: String,
   }],
 
   gender: {
