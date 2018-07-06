@@ -1,0 +1,29 @@
+[{
+        "title": "Create an event",
+        "link": "/dashboard"
+    },
+    {
+        "title": "View your events",
+        "link": "/dashboard"
+    },
+    {
+        "title": "Search Events",
+        "link": "/events/search"
+    },
+    {
+        "title": "See your favorite events",
+        "link": "/events/favorites"
+    },
+    {
+        "title": "Add your portfolio",
+        "link": "/dashboard"
+    },
+    {
+        "title": "Integrate your Github, Google Calendar",
+        "link": "/dashboard"
+    },
+    {
+        "title": "View trending events",
+        "link": "/dashboard"
+    }
+]

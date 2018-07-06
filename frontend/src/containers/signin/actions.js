@@ -1,13 +1,13 @@
 import axios from 'axios';
 import {
-  signin_url
+  signin
 } from '../../utils/apiEndpoints';
 
 export const login = data => {
   return {
     type: 'SIGNIN_IN',
     payload: axios({
-      url: signin_url,
+      url: signin,
       method: 'POST',
       data
     })

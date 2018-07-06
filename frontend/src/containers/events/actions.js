@@ -47,3 +47,11 @@ export const saveEvent = (event) => {
     })
   };
 };
+
+
+export const fetchProfile = () => {
+  return {
+    type: 'FETCH_PROFILE',
+    payload: axios.get('/profile?q=5b0cb8668fca36d7887da143') // TODO
+  };
+};

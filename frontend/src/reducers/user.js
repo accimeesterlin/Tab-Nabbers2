@@ -2,6 +2,7 @@ const initial_state = {
   authenticated: false,
   pending: false,
   isGithubActive: false,
+  favoriteEvents: [],
   search: '',
   email: "",
   github: {
@@ -46,6 +47,12 @@ const user = (state = initial_state, action) => {
         ...state,
         location: { ...action.payload.data
         }
+      };
+
+    case 'FETCH_PROFILE_FULFILLED':
+      return {
+        ...state, 
+        ...action.payload.data.user
       };
 
     case "FETCH_GITHUB_PROFILE_FULFILLED":

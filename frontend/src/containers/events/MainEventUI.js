@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Loader, Message } from 'semantic-ui-react';
+import { 
+    getLogo, 
+    getDescription, 
+    getTitle, 
+    getDate 
+} from '../../common/selectors/events/eventSelectors';
 import {
     Header,
     Footer
@@ -17,6 +23,10 @@ import FavoritesUI from './FavoritesUI';
 
 export class Events extends Component {
 
+    componentDidMount = () => {
+        this.props.fetchProfile();
+    };
+
     limitDescription = (text) => {
         if (typeof text === 'string') {
             const shorten = text.slice(0, 140) + ' ...';
@@ -27,17 +37,29 @@ export class Events extends Component {
     addToFavorite = (event) => {
         this.props.saveEvent({
             eventId: event.id,
-            logo: event.logo.original.url,
-            date: event.start.local,
-            description: event.description.text,
-            title: event.name.text,
+            logo: getLogo(event),
+            date: getDate(event),
+            description: getDescription(event),
+            title: getTitle(event),
             userId: '5b0cb8668fca36d7887da143' // TODO should be handle over cookies
         });
     };
 
+    addFavoriteKeyToEvent(events) {
+        const { favoriteEvents } = this.props;
+        const filterEvents = events.map((event, index) => {
+            const matchIds = [];
+            favoriteEvents.map((favorite) => favorite.eventId === event.id ? matchIds.push(favorite.eventId) : '');
+            matchIds.includes(event.id) ? event.is_favorite = true : null;
+            return event;
+        });
+        return filterEvents;
+    };
+
+
     displayEvents = (events) => {
         if (events.length > 1) {
-            return events.map((event, index) => (
+            return this.addFavoriteKeyToEvent(events).map((event, index) => (
                 <EventBox
                     key={index}
                     event={event}
@@ -74,6 +96,9 @@ export class Events extends Component {
             case 'favorites':
                 return <FavoritesUI
                     events={events}
+                    {...this.props}
+                    addToFavorite={this.addToFavorite}
+                    fetchProfile={this.props.fetchProfile}
                     limitDescription={this.limitDescription} />;
 
             default:
@@ -131,7 +156,8 @@ export class Events extends Component {
 Events.proptTypes = {
     events: PropTypes.array.isRequired,
     search: PropTypes.string.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    favoriteEvents: PropTypes.array.isRequired
 };
 
 export default Events;

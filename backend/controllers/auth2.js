@@ -108,11 +108,9 @@ const auth2 = (() => {
     // Features
     return {
         auth2Url, // authorize, github
-
     };
 })();
 
 const result = auth2.auth2Url('authorize', 'github');
-console.log('Result: ', result);
 
 module.exports = auth2;

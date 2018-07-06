@@ -1,5 +1,6 @@
 const authentication = require('./authentication');
 const eventBrite = require('./eventBrite');
+const profile = require('./profile');
 
 
 module.exports = {
@@ -7,5 +8,6 @@ module.exports = {
     signup: authentication.signup,
     authenticateWithService: authentication.authenticateWithService,
     searchEventsByLocation: eventBrite.searchEventsByLocation,
-    saveEventToFavorite: eventBrite.saveEventToFavorite
+    saveEventToFavorite: eventBrite.saveEventToFavorite,
+    fetchProfile: profile.fetchProfile
 };

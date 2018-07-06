@@ -4,20 +4,13 @@ const coreHelper = require('../utils/coreHelper');
 const Event = require('../models/events');
 const User = require('../models/user');
 
-/*
-    Event: 
-        "eventId": "47203102751",
-        "userId": "5b0cb8668fca36d7887da143",
-        "description": "JavaScript is the language responsible for much of the beautiful parts of your digital life. Fall in love with the language thats only growing in fame, glamor, and attention by developers the world over.Let us know if you want to give a JS-related talk (20-30 minutes) or lightning talk (5 minutes) in English or Filipino.Sponsor:Nokia Technology Center Philippines CareersSpeakers:- TBA- TBA- TBALive the higher-order life of JavaScript with us. This event is free and open to anyone interested in all things JavaScript. Make sure to support the event sponsor and Amagi Academy who bring you the best in technology education around the Philippines.",
-        "title": "Manila JavaScript #28 - JavaScript Life",
-        "date": "2018-07-19T19:00:00",
-        "logo": "https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F46260951%2F36553811998%2F1%2Foriginal.jpg?auto=compress&s=690c9a5b26a7eed42a723c75af702888"
-*/
 
 
 // Module Design Pattern
 const eventBrite = (() => {
 
+
+    // Utils
     const filterEvents = (events) => {
         const shortEventName = events.filter((el) => el.name.text.length <= 68);
         return shortEventName;
@@ -33,6 +26,8 @@ const eventBrite = (() => {
         return isDuplicated;
     };
 
+
+    // Main Functions
     const saveEventToFavorite = async (req, res, next) => {
         try {
             const userId = req.body.userId; // TODO get from cookies
@@ -60,7 +55,8 @@ const eventBrite = (() => {
             });
             next({
                 statusCode: 200,
-                message: 'Event Saved!'
+                message: 'Event Saved!',
+                eventId
             });
         } catch (error) {
             next({

@@ -1,9 +1,19 @@
+import {
+    getError,
+    getEvents,
+    getEventId
+} from '../../common/selectors/events/reducerSelectors';
 const initialState = {
     events: [],
-    saved: [],
+    saved: {
+        error: false,
+        pending: false,
+        errorMessage: null
+
+    },
     pending: 'fulfilled', // fulfilled, rejected, pending
     error: false,
-    errorMessage: ''
+    errorMessage: null
 };
 
 
@@ -12,7 +22,7 @@ const eventBrites = (state = initialState, action) => {
         case "EVENTBRITE_SEARCH_FULFILLED":
             return {
                 ...state,
-                events: [...action.payload.data.events],
+                events: [...getEvents(action)],
                 pending: 'fulfilled',
                 error: false,
             };
@@ -24,13 +34,40 @@ const eventBrites = (state = initialState, action) => {
                 error: false
             };
 
+        case 'SAVE_EVENT_FULFILLED':
+            const editedEvents = state.events.map((event, index) => {
+                if (event.id === getEventId(action)) {
+                    event.is_favorite = true;
+                }
+                return event;
+            });
+            return {
+                ...state,
+                events: [...editedEvents],
+                saved: {
+                    error: false,
+                    errorMessage: ''
+                },
+
+            };
+
+        case 'SAVE_EVENT_REJECTED':
+            return {
+                ...state,
+                saved: {
+                    error: true,
+                    errorMessage: getError(action)
+                }
+
+            };
+
         case "EVENTBRITE_SEARCH_REJECTED":
             return {
                 ...state,
                 events: [],
                 pending: 'rejected',
                 error: true,
-                errorMessage: action.payload.response.data.errorMessage
+                errorMessage: getError(action)
             };
 
         default:

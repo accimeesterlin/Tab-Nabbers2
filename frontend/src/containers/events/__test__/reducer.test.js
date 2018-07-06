@@ -3,10 +3,15 @@ import reducer from '../reducer';
 
 const initialState = {
     events: [],
-    saved: [],
+    saved: {
+        error: false,
+        pending: false,
+        errorMessage: null
+
+    },
     pending: 'fulfilled', // fulfilled, rejected, pending
     error: false,
-    errorMessage: ''
+    errorMessage: null
 };
 
 describe('', () => {

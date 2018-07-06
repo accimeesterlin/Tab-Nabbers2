@@ -6,7 +6,8 @@ const {
     signin,
     searchEventsByLocation,
     saveEventToFavorite,
-    authenticateWithService
+    authenticateWithService,
+    fetchProfile
 } = require('../controllers');
 
 
@@ -19,6 +20,8 @@ router.post('/save/event', saveEventToFavorite);
 router.get('/eventbrite/search', searchEventsByLocation);
 
 router.get('/authenticate/service/:name', authenticateWithService);
+
+router.get('/profile', fetchProfile);
 
 
 
